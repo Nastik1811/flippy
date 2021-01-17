@@ -6,7 +6,7 @@ const useRoutes = () => {
     return(
         <Switch>
             <Route path="/home" component={Home}/>
-            <Redirect to="/"/>
+            <Redirect to="/home"/>
         </Switch>
     )
 }
