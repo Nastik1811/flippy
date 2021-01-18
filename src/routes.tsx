@@ -1,11 +1,13 @@
 import React from 'react'
 import {Switch, Route, Redirect} from 'react-router-dom'
-import Home from './components/Home'
+import HomePage from './components/HomePage'
+import OverviewPage from './components/OverviewPage'
 
 const useRoutes = () => {
     return(
         <Switch>
-            <Route path="/home" component={Home}/>
+            <Route path="/home" component={HomePage}/>
+            <Route path="/overview" component={OverviewPage}/>
             <Redirect to="/home"/>
         </Switch>
     )

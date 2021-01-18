@@ -6,6 +6,7 @@ import useRoutes from './routes'
 import { AppContainer } from './App.style'
 import theme from './theme';
 import { GlobalStyle } from './theme/GlobalStyles';
+import { Cloud } from './theme/Cloud';
 
 function App() {
   const routes = useRoutes()
@@ -14,6 +15,7 @@ function App() {
       <GlobalStyle/>
       <ThemeProvider theme={theme}>
         <AppContainer>
+          <Cloud/>
           <AppNavigation/>
           {routes}
         </AppContainer>

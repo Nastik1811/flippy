@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import bookmark from '../../assets/images/bookmark.svg'
 
@@ -23,11 +23,10 @@ const NavBar = styled.nav`
     display: grid;
     grid-auto-columns: auto;
     grid-auto-flow: column;
-    column-gap: 10px;
     align-items: center;
     justify-items: center;
     height: 60px;
-  line-height: 100%;
+    line-height: 100%;
 `
 const activeClassName = 'nav-item-active' 
 
@@ -35,10 +34,11 @@ const NavItem = styled(NavLink).attrs({ activeClassName })`
     display: block;
     position: relative;
     font-family: ${props => props.theme.font.base};
-    padding: 10px;
     color: ${props => props.theme.color.text};
     text-decoration: none;
     font-weight: 500;
+    font-size: 1.15rem;
+    padding: 10px;
     z-index: 1;
 
     &::before {
@@ -48,7 +48,8 @@ const NavItem = styled(NavLink).attrs({ activeClassName })`
         left: 0;
         right: 0;
         display: block;
-        height: 80px;
+        height: 90px;
+        padding: 15px 25px;
         transform: translateY(-110px);
         transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955) ;
         z-index: -1;
@@ -74,13 +75,28 @@ const NavItem = styled(NavLink).attrs({ activeClassName })`
 
 `
 
+const SignOut = styled(Link)`
+    font-family: ${props => props.theme.font.base};
+    color: ${props => props.theme.color.text};
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.15rem;
+    padding: 10px;
+    z-index: 1;
+
+    &:hover{
+        color: rgb(76, 167, 202);
+    }
+`
+
 const AppNavigation = () => {
     return(
         <Container>
             <Logo to="/">Flippy</Logo>
             <NavBar>
-                <NavItem to='/heh'>Home</NavItem>
-                <NavItem to='/home'>Manage</NavItem>
+                <NavItem to='/home'>Home</NavItem>
+                <NavItem to='/overview'>Manage</NavItem>
+                <SignOut to='/signout'>Sign out</SignOut>
             </NavBar>
         </Container>
     )

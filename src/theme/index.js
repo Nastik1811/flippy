@@ -1,8 +1,9 @@
 
 const theme = {
     font: {
-      base: "'Roboto', 'open-sans'",
-      pretty: "'Comfortaa'" 
+      base: "'Raleway', 'open-sans'",
+      pretty: "'Comfortaa'" ,
+
     },
     color: {
       primary: 'rgb(206, 239, 252)',

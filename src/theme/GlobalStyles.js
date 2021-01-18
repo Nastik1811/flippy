@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
+import RalewayRegular from '../assets/fonts/Raleway-Regular.ttf';
 import ComfortaaRegular from '../assets/fonts/Comfortaa-Regular.ttf';
 
 export const GlobalStyle = createGlobalStyle`
@@ -8,6 +9,13 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
     font-weight: 400;
     src: url(${RobotoRegular}) format('truetype');
+  }
+
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url(${RalewayRegular}) format('truetype');
   }
 
   @font-face {
@@ -29,8 +37,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Roboto';
-    line-height: 1.4em;
+    font-family: 'Raleway';
     margin: 0;
     min-height: 100%;
     width: 100%;
