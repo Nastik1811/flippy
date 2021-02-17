@@ -9,10 +9,10 @@ const Board = styled.div`
 `
 
 
-const OverviewPage = () => {
+const ManagePage = () => {
     return(
         null
     )
 }
 
-export default OverviewPage
+export default ManagePage

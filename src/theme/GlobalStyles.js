@@ -37,7 +37,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'Raleway';
+    font-family: 'Comfortaa';
     margin: 0;
     min-height: 100%;
     width: 100%;

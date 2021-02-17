@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter as Router} from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'; 
-import AppNavigation from './components/AppNavigation'
+import AppNavigation, { BottomNavigation } from './components/AppNavigation'
 import useRoutes from './routes'
 import { AppContainer } from './App.style'
 import theme from './theme';
@@ -19,6 +19,7 @@ function App() {
           <AppNavigation/>
           {routes}
         </AppContainer>
+        <BottomNavigation/>
       </ThemeProvider>
     </Router>
   )

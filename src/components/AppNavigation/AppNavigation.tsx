@@ -2,14 +2,20 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import bookmark from '../../assets/images/bookmark.svg'
+import breakpoints from '../../theme/breakpoints'
 
 const Container = styled.div`
+    display: none;
     height: 60px;
     vertical-align: middle;
     line-height: 100%;
-    display: flex;
     align-items: center;
     justify-content: space-between;
+    //justify-content: center;
+    @media only screen and ${breakpoints.device.desktop}{
+        justify-content: space-between;
+        display: flex;
+    }
 `
 
 const Logo = styled(NavLink)`
@@ -20,13 +26,16 @@ const Logo = styled(NavLink)`
     font-size: 2.2rem;`
 
 const NavBar = styled.nav`
-    display: grid;
+    display: none;
     grid-auto-columns: auto;
     grid-auto-flow: column;
     align-items: center;
     justify-items: center;
     height: 60px;
     line-height: 100%;
+    @media only screen and ${breakpoints.device.desktop}{
+        display: grid;
+    }
 `
 const activeClassName = 'nav-item-active' 
 

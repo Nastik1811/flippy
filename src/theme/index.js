@@ -2,8 +2,7 @@
 const theme = {
     font: {
       base: "'Raleway', 'open-sans'",
-      pretty: "'Comfortaa'" ,
-
+      alternative: "'Comfortaa', 'open-sans'"
     },
     color: {
       primary: 'rgb(206, 239, 252)',

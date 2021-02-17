@@ -1,60 +1,112 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import breakpoints from '../../theme/breakpoints'
 
 const Layout = styled.div`
     display: grid;
-    grid-template-rows: 1fr auto;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    row-gap: 24px;
+    row-gap: 12px; 
+    margin-top: 2vw;
 `
 
 
 const Button = styled(Link)`
-    display: inline-block;
+    display: block;
     width: fit-content;
     height: fit-content;
     position: relative;
     text-align: center;
     text-decoration: none;
-    padding: .5rem 2rem;
-    border-radius: 5px;
-    color: #000;
+    border-radius: 8px;
+    color: #000000;
     background-color: rgb(255, 214, 102);
-    border: 1px solid rgba(226, 166, 0, 0.514);
+    box-shadow: 0 4px 15px rgba(255, 215, 112, 0.62);
     transition: 0.1s ease;
+
     &:hover{
-        transform: scale(1.1); 
+        //transform: scale(1.1); 
+    }
+
+    @media only screen and ${breakpoints.device.desktop}{
+        justify-content: space-between;
+    }
+
+`
+
+const ReviewButton = styled(Button)`
+    padding: .8rem 2rem;
+
+    &::before{
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        border: 1px solid #f3bc30;
+        left: 4px;
+        bottom: 4px;
+    }
+`
+
+const AddButton = styled(Button)`
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 100;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    
+    @media only screen and ${breakpoints.device.desktop}{
+        position: static;
+        border-radius: 5px;
+        padding: .5rem 2rem;
+        width: fit-content;
+        height: fit-content;
     }
 `
 const GreetingContainer = styled.div`
-    border: 1px solid rgba(150, 180, 200, 1);
-    margin: 5rem;
-    padding: 1vw;
-    border-radius: 15px;
-    font-size: 1.5rem;
-    width: 650px;
-    text-align: center;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    row-gap: 12px;
+    margin: auto;
+    padding: 0;
+    //font-size: 1.5rem;
+    //text-align: center;
+
+    @media only screen and ${breakpoints.device.tablet}{
+        max-width: 650px;
+        border: 1px solid rgba(150, 180, 200, 1);
+        border-radius: 15px;
+    }       
+
+    @media only screen and ${breakpoints.device.desktop}{
+
+    }
+
 `
 
 const CollectionBoard = styled.div`
-    grid-column: 1 / span 2;
     display: grid;
-    grid-auto-columns: auto;
-    grid-auto-flow: column;
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr ));
+    gap: 20px;
 `
 
 const Message = styled.div`
-    margin: 2vw ;
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
+`
+
+const Title = styled.h2`
+    font-size: 1.4rem;
 `
 
 const Preview = styled.div`
     position: relative;
-    width: 255px;
+    //width: 100%;
     height: 170px;
     border-radius: 8px;
     background-color: rgb(206, 239, 252);
@@ -89,39 +141,46 @@ const PreviewContent = styled.div`
 `
 
 
-
 const message = `You seem to be new here. Let's add your first card! There is a lot of work ahead =D`
 
- const HomePage = () => { 
-     return(
+const HomePage = () => { 
+    const [collections, setCollections] = useState<string[] | undefined>(undefined)
+     
+
+    useEffect(() => {
+        setCollections([
+            "Collection1",
+            "Collection2",
+            "Collection3"
+        ])
+    }, [])
+
+    if(!collections){
+        return <div>Loading</div>
+    }
+
+    return(
          <Layout>
              <GreetingContainer>
-                 <Message>{message}</Message>
-                 <Button to="#">Review all cards</Button>
+                 <div>
+                    <h1>Hello, Anastasia</h1>
+                    <p>{message}</p>
+                 </div>
+                <ReviewButton to="#">Review all cards</ReviewButton>
+                <AddButton to="#">
+                    <i>+</i>
+                </AddButton>
              </GreetingContainer>
-             <Button to="#">Add</Button>
-
+             <Title>Review collection</Title>
              <CollectionBoard>
-                <Preview>
-                    <PreviewContent>
-                        Collection
-                    </PreviewContent>
-                </Preview>
-                <Preview>
-                    <PreviewContent>
-                        Collection
-                    </PreviewContent>
-                </Preview>
-                <Preview>
-                    <PreviewContent>
-                        Collection
-                    </PreviewContent>
-                </Preview>
-                <Preview>
-                    <PreviewContent>
-                        Collection
-                    </PreviewContent>
-                </Preview>
+                {collections.map(c => 
+                    <Preview key={c}>
+                        <PreviewContent>
+                            {c}
+                        </PreviewContent>
+                    </Preview>
+                )        
+                }
              </CollectionBoard>
          </Layout>
      )
