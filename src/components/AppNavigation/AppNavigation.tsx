@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import bookmark from '../../assets/images/bookmark.svg'
@@ -104,7 +103,7 @@ const AppNavigation = () => {
             <Logo to="/">Flippy</Logo>
             <NavBar>
                 <NavItem to='/home'>Home</NavItem>
-                <NavItem to='/overview'>Manage</NavItem>
+                <NavItem to='/manage'>Manage</NavItem>
                 <SignOut to='/signout'>Sign out</SignOut>
             </NavBar>
         </Container>

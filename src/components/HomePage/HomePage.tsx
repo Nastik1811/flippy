@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import breakpoints from '../../theme/breakpoints'
+import SVGIcon from '../SVGIcon'
 
 const Layout = styled.div`
     display: grid;
     row-gap: 12px; 
     margin-top: 2vw;
 `
-
 
 const Button = styled(Link)`
     display: block;
@@ -22,18 +22,6 @@ const Button = styled(Link)`
     background-color: rgb(255, 214, 102);
     box-shadow: 0 4px 15px rgba(255, 215, 112, 0.62);
     transition: 0.1s ease;
-
-    &:hover{
-        //transform: scale(1.1); 
-    }
-
-    @media only screen and ${breakpoints.device.desktop}{
-        justify-content: space-between;
-    }
-
-`
-
-const ReviewButton = styled(Button)`
     padding: .8rem 2rem;
 
     &::before{
@@ -46,25 +34,21 @@ const ReviewButton = styled(Button)`
         left: 4px;
         bottom: 4px;
     }
+
 `
 
 const AddButton = styled(Button)`
-    position: fixed;
-    bottom: 70px;
-    right: 20px;
-    z-index: 100;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    display: grid;
-    place-items: center;
-    
-    @media only screen and ${breakpoints.device.desktop}{
-        position: static;
-        border-radius: 5px;
-        padding: .5rem 2rem;
-        width: fit-content;
-        height: fit-content;
+  
+    @media only screen and (max-width: 760px){
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        z-index: 100;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        display: grid;
+        place-items: center;
     }
 `
 const GreetingContainer = styled.div`
@@ -73,7 +57,7 @@ const GreetingContainer = styled.div`
     place-items: center;
     row-gap: 12px;
     margin: auto;
-    padding: 0;
+    padding: 1.5rem;
     //font-size: 1.5rem;
     //text-align: center;
 
@@ -83,10 +67,6 @@ const GreetingContainer = styled.div`
         border-radius: 15px;
     }       
 
-    @media only screen and ${breakpoints.device.desktop}{
-
-    }
-
 `
 
 const CollectionBoard = styled.div`
@@ -94,10 +74,17 @@ const CollectionBoard = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(255px, 1fr ));
     gap: 20px;
 `
+interface TypographyProps {
+    readonly onlyMobile?: boolean;
+    readonly onlyDesktop?: boolean;
+}
 
-const Message = styled.div`
-    font-weight: 400;
-    font-size: 1.2rem;
+const Typography = styled.span<TypographyProps>`
+    display: ${props => props.onlyDesktop ? "none" : "block"};
+
+    @media only screen and (min-width: 760px){
+        display: ${props => props.onlyMobile ? "none" : "block"};
+    }
 `
 
 const Title = styled.h2`
@@ -146,7 +133,6 @@ const message = `You seem to be new here. Let's add your first card! There is a 
 const HomePage = () => { 
     const [collections, setCollections] = useState<string[] | undefined>(undefined)
      
-
     useEffect(() => {
         setCollections([
             "Collection1",
@@ -162,13 +148,12 @@ const HomePage = () => {
     return(
          <Layout>
              <GreetingContainer>
-                 <div>
                     <h1>Hello, Anastasia</h1>
                     <p>{message}</p>
-                 </div>
-                <ReviewButton to="#">Review all cards</ReviewButton>
+                <Button to="#">Review all cards</Button>
                 <AddButton to="#">
-                    <i>+</i>
+                    <Typography onlyMobile><SVGIcon iconName="pen"/></Typography>
+                    <Typography onlyDesktop>Add Card</Typography>
                 </AddButton>
              </GreetingContainer>
              <Title>Review collection</Title>

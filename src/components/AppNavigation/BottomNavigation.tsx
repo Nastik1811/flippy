@@ -1,8 +1,8 @@
 import React from 'react'
 import {NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import icon from '../../assets/icons/icon.svg'
 import breakpoints from '../../theme/breakpoints'
+import SVGIcon from '../SVGIcon'
 
 const Container = styled.div`
     position: fixed;
@@ -26,10 +26,6 @@ const NavBar = styled.nav`
     justify-items: center;
     height: 100%;
     width: 100%;
-
-    @media only screen {
-        display: none;
-    }
 `
 const activeClassName = 'nav-item-active' 
 
@@ -38,9 +34,6 @@ const NavItem = styled(NavLink).attrs({ activeClassName })`
     z-index: 1;
     width: 24px;
     height: 24px;
-    background: url(${icon}) no-repeat;
-    background-size: contain;
-
     &:hover{
        
     } 
@@ -55,10 +48,10 @@ const BottomNavigation = () => {
     return(
         <Container>
             <NavBar>
-                <NavItem to='/home'></NavItem>
-                <NavItem to='/overview'></NavItem>
-                <NavItem to='/overview'></NavItem>
-                <NavItem to='/overview'></NavItem>
+                <NavItem to='/home'><SVGIcon iconName="pen"/></NavItem>
+                <NavItem to='/manage'></NavItem>
+                <NavItem to='/manage'></NavItem>
+                <NavItem to='/manage'></NavItem>
             </NavBar>
         </Container>
     )
