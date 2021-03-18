@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #1a1a1a;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <title>trash</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Line_Icons" data-name="Line Icons">
+      <g>
+        <g>
+          <path class="cls-1" d="M12,6.288H6.288V17.25a3,3,0,0,0,3,3h5.424a3,3,0,0,0,3-3V6.288Z"/>
+          <line class="cls-1" x1="10.096" y1="10.096" x2="10.096" y2="16.442"/>
+          <line class="cls-1" x1="13.904" y1="10.096" x2="13.904" y2="16.442"/>
+          <line class="cls-1" x1="5.019" y1="6.288" x2="18.981" y2="6.288"/>
+          <path class="cls-1" d="M15.173,6.288l-.746-1.194A2.862,2.862,0,0,0,12,3.75h0A2.862,2.862,0,0,0,9.573,5.094L8.827,6.288"/>
+        </g>
+        <rect class="cls-2" width="24" height="24"/>
+      </g>
+    </g>
+  </g>
+</svg>

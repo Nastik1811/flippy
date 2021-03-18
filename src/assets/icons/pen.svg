@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #1a1a1a;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <title>Asset 7</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Line_Icons" data-name="Line Icons">
+      <g>
+        <g>
+          <path class="cls-1" d="M7.836,11.624,6.322,17.678l6.054-1.514a3,3,0,0,0,1.394-.789L19.184,9.96a3.636,3.636,0,0,0,0-5.144h0a3.636,3.636,0,0,0-5.144,0L8.625,10.23A3,3,0,0,0,7.836,11.624Z"/>
+          <line class="cls-1" x1="14.04" y1="9.96" x2="3.75" y2="20.25"/>
+        </g>
+        <rect class="cls-2" width="24" height="24"/>
+      </g>
+    </g>
+  </g>
+</svg>

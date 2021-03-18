@@ -2,17 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Board = styled.div`
-    display: grid;
-    grid-auto-columns: auto;
-    grid-auto-flow: column;
-    gap: 16px;
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  gap: 16px;
 `
 
-
 const ManagePage = () => {
-    return(
-        null
-    )
+  return null
 }
 
 export default ManagePage

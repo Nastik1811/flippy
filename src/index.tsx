@@ -5,12 +5,11 @@ import * as serviceWorkerRegistration from './services/serviceWorkerRegistration
 import reportWebVitals from './services/reportWebVitals'
 
 ReactDOM.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  ,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
-);
+)
 
 serviceWorkerRegistration.unregister()
 reportWebVitals()
