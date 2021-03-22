@@ -1,5 +1,16 @@
+interface ITheme {
+  font: {
+    base: string,
+    alternative: string
+  },
+  color: {
+    primary: string,
+    accent: string,
+    text: string
+  }
+}
 
-const theme = {
+const theme: ITheme = {
     font: {
       base: "'Raleway', 'open-sans'",
       alternative: "'Comfortaa', 'open-sans'"
