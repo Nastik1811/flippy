@@ -13,46 +13,32 @@ const config = {
     measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 }
 
-const initFirebase = () => {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config)
-    }
-}
-
 export interface IFirebaseContext {
     app: firebase.app.App
-}
-
-export interface IFirestoreContext {
     firestore: firebase.firestore.Firestore
-}
-
-export interface IAuthContext {
     auth: firebase.auth.Auth
     authProviders: string[]
 }
 
 export const FirebaseContext = React.createContext({} as IFirebaseContext)
-export const FirestoreContext = React.createContext({} as IFirestoreContext)
-export const AuthContext = React.createContext({} as IAuthContext)
 
 export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
-    initFirebase()
+    if (!firebase.apps.length) {
+        firebase.initializeApp(config)
+    }
 
     return (
         <FirebaseContext.Provider
-            value={{app: firebase.app()} as IFirebaseContext}>
-            <FirestoreContext.Provider
-                value={{firestore: firebase.firestore()} as IFirestoreContext}>
-                <AuthContext.Provider
-                    value={{auth: firebase.auth()} as IAuthContext}>
-                    {children}
-                </AuthContext.Provider>
-            </FirestoreContext.Provider>
+            value={
+                {
+                    app: firebase.app(),
+                    firestore: firebase.firestore(),
+                    auth: firebase.auth(),
+                } as IFirebaseContext
+            }>
+            {children}
         </FirebaseContext.Provider>
     )
 }
 
 export const useFirebase = () => useContext(FirebaseContext)
-export const useFirestore = () => useContext(FirebaseContext)
-export const useAuth = () => useContext(FirebaseContext)

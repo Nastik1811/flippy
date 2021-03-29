@@ -42,4 +42,6 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100%;
     width: 100%;
   }
+
+
 `;

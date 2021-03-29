@@ -9,5 +9,5 @@ export const Cloud = styled.div`
     right: 0;
     height: 100%;
     background: url(${clouds}) no-repeat;
-    background-size: 100% ;
+    background-size: cover;
 `

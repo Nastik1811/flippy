@@ -20,6 +20,14 @@ const theme: ITheme = {
       accent: 'rgb(255, 214, 102)',
       text: 'black'
     }
-  };
+  }
   
-  export default theme;
+  export default theme
+
+  export const MAX_WIDTH = '1400px'
+  
+  export const breakpoints = {
+    DESKTOP: '1200px',
+    TABLET: '',
+    MOBILE: ''
+  }
