@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { device } from '../../theme/breakpoints'
+import { breakpoints } from '../../theme'
 
 export const Container = styled.div`
     position: fixed;
@@ -12,7 +12,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: #abd5ea;
-    @media only screen and ${device.desktop} {
+    @media only screen and (min-width: ${breakpoints.DESKTOP}) {
         display: none;
     }
     `

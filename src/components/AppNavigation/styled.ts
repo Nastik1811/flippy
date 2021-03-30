@@ -1,7 +1,7 @@
 import {Link, NavLink} from 'react-router-dom'
 import styled from 'styled-components'
 import bookmark from '../../assets/images/bookmark.svg'
-import { device } from '../../theme/breakpoints'
+import { breakpoints } from '../../theme'
 
 export const Container = styled.div`
     display: none;
@@ -10,7 +10,7 @@ export const Container = styled.div`
     line-height: 100%;
     align-items: center;
     justify-content: space-between;
-    @media only screen and ${device.desktop}  {
+    @media only screen and (min-width: ${breakpoints.DESKTOP})  {
         justify-content: space-between;
         display: flex;
     }
@@ -32,7 +32,7 @@ export const NavBar = styled.nav`
     justify-items: center;
     height: 60px;
     line-height: 100%;
-    @media only screen and ${device.desktop}  {
+    @media only screen and (min-width: ${breakpoints.DESKTOP})  {
         display: grid;
     }
 `

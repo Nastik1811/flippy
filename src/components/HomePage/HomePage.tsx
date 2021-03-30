@@ -39,6 +39,7 @@ const HomePage = () => {
                     <Typography onlyDesktop>Add Card</Typography>
                 </AddButton>
             </GreetingContainer>
+            <Typography>Choose a collection</Typography>
             <CollectionBoard>
                 {collections.map(c => (
                     <Preview key={c}>

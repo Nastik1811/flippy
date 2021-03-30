@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {device} from '../../theme/breakpoints'
+import { breakpoints } from '../../theme'
 import Button from '../Button'
 
 export const Layout = styled.div`
@@ -9,7 +9,7 @@ export const Layout = styled.div`
     `
 
 export const AddButton = styled(Button)`
-    @media only screen and ${device.tablet} {
+    @media only screen and (max-width: ${breakpoints.DESKTOP} ) {
         position: fixed;
         bottom: 70px;
         right: 20px;
@@ -31,7 +31,7 @@ export const GreetingContainer = styled.div`
     //font-size: 1.5rem;
     //text-align: center;
 
-    @media only screen and ${device.tablet} {
+    @media only screen and (min-width: ${breakpoints.TABLET} ) {
         max-width: 650px;
         border: 1px solid rgba(150, 180, 200, 1);
         border-radius: 15px;
@@ -75,6 +75,7 @@ export const Preview = styled.div`
         border-color: rgb(55, 115, 145);
     }
 `
+
 
 export const PreviewContent = styled.div`
     width: 100%;

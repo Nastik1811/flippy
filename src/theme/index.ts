@@ -28,6 +28,6 @@ const theme: ITheme = {
   
   export const breakpoints = {
     DESKTOP: '1200px',
-    TABLET: '',
-    MOBILE: ''
+    TABLET: '770px',
+    MOBILE: '320px'
   }
