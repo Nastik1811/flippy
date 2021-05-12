@@ -3,7 +3,6 @@ import {FormEvent, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {useFirebase} from '../../context/FirebaseContext'
 import {IUserData} from '../../context/UserContext'
-import Button from '../Button'
 import Typography from '../Typography'
 import {AuthForm, Input, Submit, Title} from './styled'
 
@@ -32,7 +31,7 @@ const formStatusProps: IFormStatusProps = {
 }
 
 const Signup = () => {
-    const {auth} = useFirebase()
+    const {auth, firestore} = useFirebase()
     const [displayFormStatus, setDisplayFormStatus] = useState(false)
     const [formStatus, setFormStatus] = useState<IFormStatus>({
         message: '',
@@ -47,6 +46,19 @@ const Signup = () => {
                         cred.user.updateProfile({
                             displayName: data.name,
                         })
+                        firestore.collection('users').doc(cred.user.uid).set({
+                            user_name: data.name,
+                        })
+                        firestore
+                            .collection('users')
+                            .doc(cred.user.uid)
+                            .collection('collections')
+                            .doc(cred.user.uid)
+                            .set({
+                                name: 'Default',
+                                created: new Date(),
+                                lastEdit: new Date(),
+                            })
                     }
                 }
             )
@@ -76,9 +88,9 @@ const Signup = () => {
                 <Input type='email' placeholder='email' name='email' />
                 <Input type='password' placeholder='password' name='password' />
 
-                <Button as='button' type='submit'>
+                <Submit as='button' type='submit'>
                     Create an account
-                </Button>
+                </Submit>
 
                 <Typography>
                     Already have an account?

@@ -1,14 +1,14 @@
 import {Formik, FormikErrors} from 'formik'
 import {NavLink} from 'react-router-dom'
+import {useDataManager} from '../../context/DataManagerContext'
 import {useFirebase} from '../../context/FirebaseContext'
 import {IUserData} from '../../context/UserContext'
-import Button from '../Button'
 import Typography from '../Typography'
 import {AuthForm, Input, Submit, Title} from './styled'
 
 const Login = () => {
     const {auth} = useFirebase()
-
+    const {manager} = useDataManager()
     return (
         <Formik
             initialValues={{email: '', password: ''}}
@@ -20,8 +20,6 @@ const Login = () => {
                 return errors
             }}
             onSubmit={(values, actions) => {
-                console.log('Submit')
-                console.log(values, actions)
                 auth.signInWithEmailAndPassword(
                     values.email,
                     values.password
@@ -32,9 +30,10 @@ const Login = () => {
                 <Input type='email' placeholder='email' name='email' />
                 <Input type='password' placeholder='password' name='password' />
 
-                <Button as='button' type='submit'>
+                <Submit as='button' type='submit'>
                     Login
-                </Button>
+                </Submit>
+
                 <Typography>Forgot the password?</Typography>
                 <Typography>
                     Don't have an account?

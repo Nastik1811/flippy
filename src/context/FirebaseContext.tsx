@@ -2,6 +2,8 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import React, {useContext} from 'react'
+import {DataManger} from './DataManager'
+import {Firebase} from './Firebase'
 
 const config = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -14,26 +16,49 @@ const config = {
 }
 
 export interface IFirebaseContext {
-    app: firebase.app.App
-    firestore: firebase.firestore.Firestore
-    auth: firebase.auth.Auth
-    authProviders: string[]
+    app: Firebase
+    manager: DataManger
+    user: firebase.User
+    authProviders?: string[]
 }
 
 export const FirebaseContext = React.createContext({} as IFirebaseContext)
 
 export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
+    const [ready, setReady] = React.useState(false)
+    const [user, setUser] = React.useState<firebase.User | null>(null)
+
     if (!firebase.apps.length) {
         firebase.initializeApp(config)
+    }
+
+    React.useEffect(() => {
+        firebase.auth().onAuthStateChanged(user => {
+            setUser(user)
+
+            if (!ready) {
+                setReady(true)
+            }
+        })
+    }, [firebase])
+
+    const app = React.useMemo(() => new Firebase(firebase.app()), [firebase])
+
+    const manager = React.useMemo(() => {
+        return user ? new DataManger(firebase.app(), user.uid) : null
+    }, [user, firebase])
+
+    if (!ready) {
+        return <div>Load...</div>
     }
 
     return (
         <FirebaseContext.Provider
             value={
                 {
-                    app: firebase.app(),
-                    firestore: firebase.firestore(),
-                    auth: firebase.auth(),
+                    user,
+                    manager,
+                    app,
                 } as IFirebaseContext
             }>
             {children}

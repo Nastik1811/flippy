@@ -11,7 +11,7 @@ const AppNavigation = () => {
             <NavBar>
                 <NavItem to='/home'>Home</NavItem>
                 <NavItem to='/manage'>Manage</NavItem>
-                <SignOut to='/signout' onClick={auth.signOut}>
+                <SignOut to='/signout' onClick={() => auth.signOut()}>
                     Sign out
                 </SignOut>
             </NavBar>

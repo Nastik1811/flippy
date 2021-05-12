@@ -10,17 +10,20 @@ import {GlobalStyle} from './theme/GlobalStyles'
 import {FirebaseProvider} from './context/FirebaseContext'
 import {UserProvider} from './context/UserContext'
 import {ThemeProvider} from 'styled-components'
+import {DataManagerProvider} from './context/DataManagerContext'
 
 ReactDOM.render(
     <React.StrictMode>
         <FirebaseProvider>
             <UserProvider>
-                <GlobalStyle />
-                <ThemeProvider theme={theme}>
-                    <Router>
-                        <App />
-                    </Router>
-                </ThemeProvider>
+                <DataManagerProvider>
+                    <GlobalStyle />
+                    <ThemeProvider theme={theme}>
+                        <Router>
+                            <App />
+                        </Router>
+                    </ThemeProvider>
+                </DataManagerProvider>
             </UserProvider>
         </FirebaseProvider>
     </React.StrictMode>,

@@ -32,7 +32,7 @@ const HomePage = () => {
                 <h1>Hello, Anastasia</h1>
                 <p>{message}</p>
                 <Button to='#'>Review all cards</Button>
-                <AddButton to='#'>
+                <AddButton to='/card'>
                     <Typography onlyMobile>
                         <SVGIcon iconName='pen' />
                     </Typography>

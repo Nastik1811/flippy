@@ -3,16 +3,19 @@ import {AppContainer} from './App.style'
 import AppNavigation from './components/AppNavigation'
 import AuthPage from './components/AuthPage'
 import BottomNavigation from './components/BottomNavigation'
+import CardEditorPage from './components/CardEditorPage/CardEditorPage'
 import HomePage from './components/HomePage'
 import Landing from './components/Landing'
 import ManagePage from './components/ManagePage'
 import NotFoundPage from './components/NotFoundPage'
 import {useUserInfo} from './context/UserContext'
 import {Cloud} from './theme/Cloud'
+import {useDataManager} from './context/DataManagerContext'
 
 function App() {
     const {user} = useUserInfo()
-    console.log(user)
+    const {manager} = useDataManager()
+    manager?.getCards().then(console.log)
     if (!user) {
         return (
             <AppContainer>
@@ -32,6 +35,7 @@ function App() {
             <Switch>
                 <Route path='/home' component={HomePage} />
                 <Route path='/manage' component={ManagePage} />
+                <Route path='/card' component={CardEditorPage} />
                 <Redirect path='/auth' to='/home' />
                 <Redirect path='/' to='/home' />
                 <Route component={NotFoundPage} />

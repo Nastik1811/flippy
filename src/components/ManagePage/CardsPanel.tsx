@@ -1,10 +1,21 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {BasicPreview} from '../common'
 import {ItemsGrid} from './styled'
 
-const CardsPanel = () => {
-    const [cards, setCards] = useState(null)
+interface Card {
+    id: string
+}
 
-    return <ItemsGrid></ItemsGrid>
+const CardsPanel = () => {
+    const [cards, setCards] = useState<Card[] | null>(null)
+
+    useEffect(() => {}, [])
+
+    return (
+        <ItemsGrid>
+            {cards ? cards?.map(c => <BasicPreview key={c.id} />) : null}
+        </ItemsGrid>
+    )
 }
 
 export default CardsPanel
