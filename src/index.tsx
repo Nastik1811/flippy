@@ -8,23 +8,16 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import theme from './theme'
 import {GlobalStyle} from './theme/GlobalStyles'
 import {FirebaseProvider} from './context/FirebaseContext'
-import {UserProvider} from './context/UserContext'
 import {ThemeProvider} from 'styled-components'
-import {DataManagerProvider} from './context/DataManagerContext'
-
 ReactDOM.render(
     <React.StrictMode>
         <FirebaseProvider>
-            <UserProvider>
-                <DataManagerProvider>
-                    <GlobalStyle />
-                    <ThemeProvider theme={theme}>
-                        <Router>
-                            <App />
-                        </Router>
-                    </ThemeProvider>
-                </DataManagerProvider>
-            </UserProvider>
+            <GlobalStyle />
+            <ThemeProvider theme={theme}>
+                <Router>
+                    <App />
+                </Router>
+            </ThemeProvider>
         </FirebaseProvider>
     </React.StrictMode>,
     document.getElementById('root')

@@ -23,8 +23,8 @@ export class DataManger {
     collectionsRef: firebase.firestore.CollectionReference<firebase.firestore.DocumentData>
     defaultCollectionId: string | null
 
-    constructor(app: firebase.app.App, uid: string) {
-        this.firestore = app.firestore();
+    constructor(firestore: firebase.firestore.Firestore, uid: string) {
+        this.firestore = firestore;
         this.uid = uid;
         this.userRef = this.firestore.collection("users").doc(uid);
         this.cardsRef = this.userRef.collection("cards");

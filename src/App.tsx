@@ -8,14 +8,11 @@ import HomePage from './components/HomePage'
 import Landing from './components/Landing'
 import ManagePage from './components/ManagePage'
 import NotFoundPage from './components/NotFoundPage'
-import {useUserInfo} from './context/UserContext'
+import {useFirebase} from './context/FirebaseContext'
 import {Cloud} from './theme/Cloud'
-import {useDataManager} from './context/DataManagerContext'
 
 function App() {
-    const {user} = useUserInfo()
-    const {manager} = useDataManager()
-    manager?.getCards().then(console.log)
+    const {user} = useFirebase()
     if (!user) {
         return (
             <AppContainer>

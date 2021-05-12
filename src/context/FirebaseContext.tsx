@@ -27,26 +27,27 @@ export const FirebaseContext = React.createContext({} as IFirebaseContext)
 export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
     const [ready, setReady] = React.useState(false)
     const [user, setUser] = React.useState<firebase.User | null>(null)
-
-    if (!firebase.apps.length) {
-        firebase.initializeApp(config)
-    }
+    const [app, setApp] = React.useState<Firebase | null>(null)
+    const [manager, setManger] = React.useState<DataManger | null>(null)
 
     React.useEffect(() => {
-        firebase.auth().onAuthStateChanged(user => {
-            setUser(user)
+        setApp(new Firebase(config))
+    }, [])
 
-            if (!ready) {
+    React.useEffect(() => {
+        if (app !== null) {
+            setManger(user ? new DataManger(app.getDatabase(), user.uid) : null)
+        }
+    }, [app, user])
+
+    React.useEffect(() => {
+        if (app !== null) {
+            app.onAuthStateChanged(user => {
+                setUser(user)
                 setReady(true)
-            }
-        })
-    }, [firebase])
-
-    const app = React.useMemo(() => new Firebase(firebase.app()), [firebase])
-
-    const manager = React.useMemo(() => {
-        return user ? new DataManger(firebase.app(), user.uid) : null
-    }, [user, firebase])
+            })
+        }
+    }, [app])
 
     if (!ready) {
         return <div>Load...</div>

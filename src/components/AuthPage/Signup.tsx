@@ -2,7 +2,7 @@ import {Formik, FormikErrors} from 'formik'
 import {FormEvent, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {useFirebase} from '../../context/FirebaseContext'
-import {IUserData} from '../../context/UserContext'
+import {IAuthUserData} from '../../types'
 import Typography from '../Typography'
 import {AuthForm, Input, Submit, Title} from './styled'
 
@@ -31,37 +31,16 @@ const formStatusProps: IFormStatusProps = {
 }
 
 const Signup = () => {
-    const {auth, firestore} = useFirebase()
+    const {app} = useFirebase()
     const [displayFormStatus, setDisplayFormStatus] = useState(false)
     const [formStatus, setFormStatus] = useState<IFormStatus>({
         message: '',
         type: '',
     })
 
-    const createNewUser = async (data: IUserData, resetForm: Function) => {
+    const createNewUser = async (data: IAuthUserData, resetForm: Function) => {
         try {
-            auth.createUserWithEmailAndPassword(data.email, data.password).then(
-                cred => {
-                    if (cred.user) {
-                        cred.user.updateProfile({
-                            displayName: data.name,
-                        })
-                        firestore.collection('users').doc(cred.user.uid).set({
-                            user_name: data.name,
-                        })
-                        firestore
-                            .collection('users')
-                            .doc(cred.user.uid)
-                            .collection('collections')
-                            .doc(cred.user.uid)
-                            .set({
-                                name: 'Default',
-                                created: new Date(),
-                                lastEdit: new Date(),
-                            })
-                    }
-                }
-            )
+            app.createUser(data)
         } catch (error) {
             console.log(error)
         } finally {
@@ -72,8 +51,8 @@ const Signup = () => {
     return (
         <Formik
             initialValues={{email: '', password: ''}}
-            validate={(values: IUserData) => {
-                let errors: FormikErrors<IUserData> = {}
+            validate={(values: IAuthUserData) => {
+                let errors: FormikErrors<IAuthUserData> = {}
                 if (!values.email) {
                     errors.email = 'Required'
                 }

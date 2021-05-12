@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {Redirect} from 'react-router'
-import {useDataManager} from '../../context/DataManagerContext'
+import {useFirebase} from '../../context/FirebaseContext'
 import {BaseCardDetails, Collection} from '../../types'
 import CardForm from '../CardForm'
 import SVGIcon from '../SVGIcon'
@@ -19,7 +19,7 @@ const emptyDetails: BaseCardDetails = {
 }
 
 const CardEditorPage = () => {
-    const {manager} = useDataManager()
+    const {manager} = useFirebase()
     const [initialDetails, setInitialDetails] = useState(emptyDetails)
     const [collections, setCollections] = useState<Collection[]>([])
     const [completed, setCompleted] = useState(false)

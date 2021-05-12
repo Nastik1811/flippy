@@ -1,29 +1,27 @@
 import {Formik, FormikErrors} from 'formik'
 import {NavLink} from 'react-router-dom'
-import {useDataManager} from '../../context/DataManagerContext'
 import {useFirebase} from '../../context/FirebaseContext'
-import {IUserData} from '../../context/UserContext'
+import {IAuthUserData} from '../../types'
 import Typography from '../Typography'
 import {AuthForm, Input, Submit, Title} from './styled'
 
 const Login = () => {
-    const {auth} = useFirebase()
-    const {manager} = useDataManager()
+    const {app} = useFirebase()
     return (
         <Formik
             initialValues={{email: '', password: ''}}
-            validate={(values: IUserData) => {
-                let errors: FormikErrors<IUserData> = {}
+            validate={(values: IAuthUserData) => {
+                let errors: FormikErrors<IAuthUserData> = {}
                 if (!values.email) {
                     errors.email = 'Required'
                 }
                 return errors
             }}
             onSubmit={(values, actions) => {
-                auth.signInWithEmailAndPassword(
-                    values.email,
-                    values.password
-                ).catch(console.log)
+                app.login({
+                    email: values.email,
+                    password: values.password,
+                }).catch(console.log)
             }}>
             <AuthForm>
                 <Title>LOGIN</Title>

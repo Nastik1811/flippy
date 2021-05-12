@@ -9,4 +9,10 @@ export type Collection = {
     name: string
 }
 
+export interface IAuthUserData {
+    name?: string
+    email: string
+    password: string
+}
+
 export type CardSide = 'back' | 'front'

@@ -1,5 +1,5 @@
 import {Route, Redirect} from 'react-router-dom'
-import {useUserInfo} from '../../context/UserContext'
+import {useFirebase} from '../../context/FirebaseContext'
 
 type RoutePropsType = {
     component: React.FC
@@ -7,7 +7,7 @@ type RoutePropsType = {
     exact: boolean
 }
 const PrivateRoute = ({component, path, exact}: RoutePropsType) => {
-    const user = useUserInfo()
+    const user = useFirebase()
     return user ? (
         <Route path={path} exact={exact} component={component} />
     ) : (
