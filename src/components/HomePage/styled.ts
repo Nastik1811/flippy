@@ -16,9 +16,10 @@ export const AddButton = styled(Button)`
         z-index: 100;
         border-radius: 50%;
         width: 60px;
-        height: 60px;
-        display: grid;
-        place-items: center;
+        height: 60px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `
 export const GreetingContainer = styled.div`

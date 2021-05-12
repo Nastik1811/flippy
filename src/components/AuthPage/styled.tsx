@@ -1,5 +1,6 @@
 import {Field, Form} from 'formik'
 import styled from 'styled-components'
+import Button from '../Button'
 
 export const AuthContainer = styled.div`
     width: 100%;
@@ -7,7 +8,6 @@ export const AuthContainer = styled.div`
     margin: auto;
     display: grid;
     place-items: center;
-    margin-top: 12vw;
 `
 
 export const AuthForm = styled(Form)`
@@ -15,21 +15,26 @@ export const AuthForm = styled(Form)`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
 `
 
 export const Input = styled(Field)`
-    width: 300px;
-    height: 35px;
+    height: 45px;
     border: 1px solid #ccc;
     background-color: #fff;
+    width: 100%;
+    padding: 0.5em;
+    font-size: 1em;
+    background: transparent;
+    border-radius: 8px;
+    &::placeholder {
+        color: rgba(92, 154, 177, 0.5);
+    }
 `
 
-export const Submit = styled.button`
-    width: 200px;
-    height: 35px;
-    background-color: #5995ef;
-    color: #fff;
-    border-radius: 3px;
+export const Submit = styled(Button)`
+    margin-top: 1rem;
+    font-size: 1.3rem;
 `
 
 export const Title = styled.h1``
