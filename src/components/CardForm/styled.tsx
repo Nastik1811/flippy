@@ -8,7 +8,6 @@ export const StyledForm = styled.form`
     display: grid;
     align-items: center;
     width: 100%;
-    height: 100%;
     justify-content: space-around;
     gap: 10px;
     row-gap: 24px;
@@ -35,7 +34,8 @@ export const Card = styled.div<{side: CardSide}>`
     cursor: pointer;
     width: 100%;
     max-width: 500px;
-    min-height: 300px;
+    min-height: 400px;
+    max-height: 400px;
     height: 100%;
     margin: 10px;
     border-radius: 8px;
@@ -93,9 +93,13 @@ export const CollectionSelectWrapper = styled.label`
     align-items: center;
     font-size: 1.5rem;
     gap: 10px;
+
+    @media only screen and (min-width: ${breakpoints.TABLET}) {
+        place-self: start;
+        margin-top: 20px;
+    }
 `
 export const CollectionSelect = styled.select`
-    display: inline-block;
     background-color: transparent;
     font-size: 1.3rem;
     padding: 0 5px;

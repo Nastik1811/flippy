@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import {useFirebase} from '../../context/FirebaseContext'
 import {IAuthUserData} from '../../types'
 import Typography from '../Typography'
-import {AuthForm, Input, Submit, Title} from './styled'
+import {AuthForm, Input, Submit, SwitchLink, Title} from './styled'
 
 interface IFormStatus {
     message: string
@@ -73,7 +73,7 @@ const Signup = () => {
 
                 <Typography>
                     Already have an account?
-                    <NavLink to='/auth/login'>Login</NavLink>
+                    <SwitchLink to='/auth/login'>Login</SwitchLink>
                 </Typography>
 
                 {displayFormStatus && (

@@ -7,6 +7,9 @@ export const Cloud = styled(clouds)`
     top: 0;
     left: 0;
     right: 0;
-    height: 100%;
     touch-action: none;
+    width: 100%; 
+    height: auto;
+    #clouds{
+    }
 `

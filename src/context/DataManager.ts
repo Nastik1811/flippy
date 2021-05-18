@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
-import { BaseCardDetails, Collection } from '../types'
+import { BaseCardDetails, Collection, Card } from '../types'
 
 export const MARK = {
     BAD: 0,
@@ -68,15 +68,30 @@ export class DataManger {
         return doc.id
     }
 
-    async getCards(collectionId?: string){
+    async getCards(collectionId?: string): Promise<Card[]> {
         let ref = collectionId ? this.cardsRef.where("collection.id", "==", collectionId) : this.cardsRef
         const query = await ref.get()
-        return query.docs.map(doc => ({ ...doc.data(), id: doc.id }))
+        return query.docs.map(doc => ({
+            front: doc.data().front,
+            back: doc.data().back,
+            collection_id: doc.data().collection_id,
+            id: doc.id }))
     }
 
     async getCollections(){
-        const query = await this.collectionsRef.get()
-        return query.docs.map(doc => ({ id: doc.id , name: doc.data().name, created: doc.data().created}))
+        let collections: Collection[] = []
+        try{
+            const query = await this.collectionsRef.get()
+            collections = query.docs.map(doc => ({ id: doc.id , name: doc.data().name, created: doc.data().created}))
+        }
+        catch(e){
+            console.error(e.message)
+        }
+        finally{
+            return collections
+        }
+        
+        
     }
 
     async createDefaultCollection(){

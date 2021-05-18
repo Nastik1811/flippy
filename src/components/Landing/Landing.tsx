@@ -1,11 +1,12 @@
 import {Link} from 'react-router-dom'
+import Button from '../Button'
+import {Layout} from './styled'
 
 const Landing = () => {
     return (
-        <div>
-            Landing
-            <Link to='/auth/signup'>Start learning!</Link>
-        </div>
+        <Layout>
+            <Button to='/auth/signup'>Start learning!</Button>
+        </Layout>
     )
 }
 

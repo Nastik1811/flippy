@@ -49,9 +49,10 @@ export const Title = styled.h2`
     font-size: 1.4rem;
     `
 
-export const Preview = styled.div`
+export const CollectionPreview = styled.div`
     position: relative;
     //width: 100%;
+    cursor: pointer;
     height: 170px;
     border-radius: 8px;
     background-color: rgb(206, 239, 252);

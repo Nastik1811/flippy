@@ -1,3 +1,5 @@
+export type Theme = 'light' | 'dark' 
+
 export interface BaseCardDetails {
     front: string
     back: string
@@ -7,6 +9,10 @@ export interface BaseCardDetails {
 export type Collection = {
     id: string
     name: string
+}
+
+export interface Card extends BaseCardDetails {
+    id: string
 }
 
 export interface IAuthUserData {

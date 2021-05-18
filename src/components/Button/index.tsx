@@ -9,6 +9,7 @@ const Button = styled(Link)`
     position: relative;
     text-align: center;
     text-decoration: none;
+    font-family: inherit;
     border-radius: 8px;
     color: #000000;
     background-color: rgb(255, 214, 102);

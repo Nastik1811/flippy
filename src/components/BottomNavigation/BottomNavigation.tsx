@@ -11,13 +11,13 @@ const BottomNavigation = () => {
         <Container>
             <NavBar>
                 <NavItem to='/home'>
-                    <SVGIcon iconName='pen' />
+                    <SVGIcon iconName='home' />
                 </NavItem>
                 <NavItem to='/manage'>
-                    <SVGIcon iconName='pen' />
+                    <SVGIcon iconName='manage' />
                 </NavItem>
                 <NavItem to='/manage'>
-                    <SVGIcon iconName='pen' />
+                    <SVGIcon iconName='user' />
                 </NavItem>
             </NavBar>
         </Container>

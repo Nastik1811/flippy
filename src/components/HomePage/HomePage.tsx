@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react'
+import {useTheme} from '../../hooks/useTheme'
 import Button from '../Button'
 import SVGIcon from '../SVGIcon'
 import Typography from '../Typography'
@@ -7,16 +8,16 @@ import {
     GreetingContainer,
     Layout,
     PreviewContent,
-    Preview,
+    CollectionPreview,
     CollectionBoard,
 } from './styled'
 
 const message = `You seem to be new here. Let's add your first card! There is a lot of work ahead =D`
 
 const HomePage = () => {
-    const [collections, setCollections] = useState<string[] | undefined>(
-        undefined
-    )
+    const {switchTheme} = useTheme()
+    const [collections, setCollections] =
+        useState<string[] | undefined>(undefined)
 
     useEffect(() => {
         setCollections(['Collection1', 'Collection2', 'Collection3'])
@@ -31,7 +32,9 @@ const HomePage = () => {
             <GreetingContainer>
                 <h1>Hello, Anastasia</h1>
                 <p>{message}</p>
-                <Button to='#'>Review all cards</Button>
+                <Button as='button' onClick={switchTheme}>
+                    Review all cards
+                </Button>
                 <AddButton to='/card'>
                     <Typography onlyMobile>
                         <SVGIcon iconName='pen' />
@@ -42,9 +45,9 @@ const HomePage = () => {
             <Typography>Choose a collection</Typography>
             <CollectionBoard>
                 {collections.map(c => (
-                    <Preview key={c}>
+                    <CollectionPreview key={c}>
                         <PreviewContent>{c}</PreviewContent>
-                    </Preview>
+                    </CollectionPreview>
                 ))}
             </CollectionBoard>
         </Layout>

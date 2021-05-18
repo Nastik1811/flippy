@@ -17,8 +17,8 @@ export const Container = styled.div`
 `
 
 export const Logo = styled(NavLink)`
-    font-family: ${props => props.theme.font.pretty};
-    color: ${props => props.theme.color.text};
+    font-family: 'Comfortaa';
+    color: black;
     display: block;
     text-decoration: none;
     font-size: 2.2rem;
@@ -41,8 +41,7 @@ const activeClassName = 'nav-item-active'
 export const NavItem = styled(NavLink).attrs({activeClassName})`
 display: block;
 position: relative;
-font-family: ${props => props.theme.font.base};
-color: ${props => props.theme.color.text};
+color: black;
 text-decoration: none;
 font-weight: 500;
 font-size: 1.15rem;
@@ -82,8 +81,6 @@ z-index: 1;
 `
 
 export const SignOut = styled(Link)`
-    font-family: ${props => props.theme.font.base};
-    color: ${props => props.theme.color.text};
     text-decoration: none;
     font-weight: 500;
     font-size: 1.15rem;

@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 import {useFirebase} from '../../context/FirebaseContext'
 import {IAuthUserData} from '../../types'
 import Typography from '../Typography'
-import {AuthForm, Input, Submit, Title} from './styled'
+import {AuthForm, Input, Submit, SwitchLink, Title} from './styled'
 
 const Login = () => {
     const {app} = useFirebase()
@@ -35,7 +35,7 @@ const Login = () => {
                 <Typography>Forgot the password?</Typography>
                 <Typography>
                     Don't have an account?
-                    <NavLink to='/auth/signup'>Sign up here</NavLink>
+                    <SwitchLink to='/auth/signup'>Sign up here</SwitchLink>
                 </Typography>
             </AuthForm>
         </Formik>

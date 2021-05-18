@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const BasicPreview = styled.div`
     position: relative;
-    height: 170px;
+    min-height: 150px;
+    min-width: 200px;
     border-radius: 8px;
     background-color: rgb(206, 239, 252);
 

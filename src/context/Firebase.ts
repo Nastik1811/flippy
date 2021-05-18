@@ -7,7 +7,7 @@ import { IAuthUserData } from '../types';
 export class Firebase {
     app: firebase.app.App
     constructor(config: Object) {
-        this.app = firebase.initializeApp(config);
+        this.app = firebase.apps.length === 0 ? firebase.initializeApp(config) : firebase.apps[0];
     }
     getDatabase = () => this.app.firestore()
     signOut =() => this.app.auth().signOut();
@@ -34,6 +34,5 @@ export class Firebase {
                     }
                 })
     }
-
-login = async ({email, password}: IAuthUserData) => await this.app.auth().signInWithEmailAndPassword(email, password);
+    login = async ({email, password}: IAuthUserData) => await this.app.auth().signInWithEmailAndPassword(email, password);
 }

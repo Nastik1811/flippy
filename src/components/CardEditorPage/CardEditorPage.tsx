@@ -28,9 +28,9 @@ const CardEditorPage = () => {
         manager!.getCollections().then(data => setCollections(data))
     }, [manager])
 
-    const onSubmit = async (details: BaseCardDetails) => {
+    const onSubmit = (details: BaseCardDetails) => {
         try {
-            await manager!.addCard(details)
+            manager!.addCard(details)
             setCompleted(true)
         } catch (error) {
             alert(error)

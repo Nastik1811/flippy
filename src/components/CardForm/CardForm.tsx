@@ -1,7 +1,7 @@
 import {useFormik} from 'formik'
-import {FormEvent, useState} from 'react'
+import {useState} from 'react'
 import {BaseCardDetails, CardSide, Collection} from '../../types'
-import {SubmitButton} from '../common'
+import * as Yup from 'yup'
 import Typography from '../Typography'
 import {
     Card,
@@ -31,9 +31,17 @@ const CardForm = ({
         setTargetSide(current => (current === 'front' ? 'back' : 'front'))
     }
 
+    const validationSchema = Yup.object({
+        front: Yup.string().required('You need to fill both card sides'),
+        back: Yup.string().required('You need to fill both card sides'),
+        collection_id: Yup.string().required('Required'),
+    })
+
     const formik = useFormik<BaseCardDetails>({
         initialValues: initialDetails,
         onSubmit: onSubmit,
+        validationSchema,
+        validateOnChange: false,
     })
 
     return (

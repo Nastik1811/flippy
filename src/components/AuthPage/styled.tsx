@@ -1,4 +1,5 @@
 import {Field, Form} from 'formik'
+import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 import Button from '../Button'
 
@@ -35,6 +36,10 @@ export const Input = styled(Field)`
 export const Submit = styled(Button)`
     margin-top: 1rem;
     font-size: 1.3rem;
+`
+
+export const SwitchLink = styled(Link)`
+    color: black;
 `
 
 export const Title = styled.h1``
