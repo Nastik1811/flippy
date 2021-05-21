@@ -52,11 +52,13 @@ const CardForm = ({
                         name='front'
                         value={formik.values.front}
                         onChange={formik.handleChange}
+                        placeholder='front side'
                     />
                 </SideView>
                 <SideView side='back'>
                     <CardContent
                         name='back'
+                        placeholder='back side'
                         value={formik.values.back}
                         onChange={formik.handleChange}
                     />

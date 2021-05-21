@@ -4,6 +4,7 @@ import {Theme} from '../types'
 const storageName = 'theme'
 
 export const useTheme = () => {
+    const [themeLoaded, setThemeLoaded] = useState(false)
     const [theme, setTheme] = useState<Theme>('light')
 
     const switchTheme = () =>
@@ -12,19 +13,14 @@ export const useTheme = () => {
     useEffect(() => {
         const storedValue = localStorage.getItem(storageName)
         if (storedValue) {
-            const themeValue = JSON.parse(storedValue) as Theme
-            setTheme(themeValue)
+            setTheme(storedValue as Theme)
+            setThemeLoaded(true)
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem(
-            storageName,
-            JSON.stringify({
-                theme,
-            })
-        )
+        localStorage.setItem(storageName, theme)
     }, [theme])
 
-    return {theme, switchTheme}
+    return {theme, switchTheme, themeLoaded}
 }

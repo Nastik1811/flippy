@@ -34,6 +34,10 @@ export const GlobalStyle = createGlobalStyle`
 
   *, *:before, *:after {
     box-sizing: inherit;
+    color: ${props =>
+            props.theme === 'light'
+                ? 'black'
+                : 'white'};
   }
 
   body {
@@ -41,6 +45,11 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     height: 100%;
     width: 100%;
+    background-color: ${props =>
+            props.theme === 'light'
+                ? '#FFFFFF'
+                : '#23232f'};
+                
   }
 
   #root{
@@ -48,5 +57,19 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
   }
 
+:root{
+    --black: #000;
+    --sea: 92, 154, 177;
+    --purple: 176, 131, 228;
+    --blue: 35, 180, 233;
+    --deep-purple: 98, 66, 158;
+
+    --font-xxs: 12px;
+    --font-xs: 14px;
+    --font-s: 16px;
+    --font-m: 18px;
+    --font-l: 24px;
+    --font-xl: 28px;
+}
 
 `;

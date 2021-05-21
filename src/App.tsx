@@ -1,18 +1,25 @@
 import {BrowserRouter as Router} from 'react-router-dom'
 import {GlobalStyle} from './theme/GlobalStyles'
 import {ThemeProvider} from 'styled-components'
-import {FirebaseProvider, useFirebase} from './context/FirebaseContext'
+import {FirebaseProvider} from './context/FirebaseContext'
 import {useTheme} from './hooks/useTheme'
-import useRoutes from './routes'
+import AppRoutes from './AppRoutes'
 
 function App() {
-    const {theme} = useTheme()
-    const routes = useRoutes()
+    const {theme, switchTheme, themeLoaded} = useTheme()
+
+    if (!themeLoaded) {
+        return <div>Loading</div>
+    }
+
     return (
         <FirebaseProvider>
             <Router>
                 <GlobalStyle theme={theme} />
-                <ThemeProvider theme={theme}>{routes}</ThemeProvider>
+                <button onClick={switchTheme}>CLICK</button>
+                <ThemeProvider theme={{theme}}>
+                    <AppRoutes />
+                </ThemeProvider>
             </Router>
         </FirebaseProvider>
     )

@@ -4,6 +4,7 @@ import {ReactComponent as manage} from '../../assets/icons/manage.svg'
 import {ReactComponent as settings} from '../../assets/icons/settings.svg'
 import {ReactComponent as pen} from '../../assets/icons/pen.svg'
 import {ReactComponent as user} from '../../assets/icons/user.svg'
+import {ReactComponent as back} from '../../assets/icons/back.svg'
 import styled from 'styled-components'
 
 const icons = {
@@ -12,6 +13,7 @@ const icons = {
     settings,
     pen,
     user,
+    back,
 }
 
 type IconName = keyof typeof icons

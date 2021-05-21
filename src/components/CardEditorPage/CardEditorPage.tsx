@@ -45,7 +45,7 @@ const CardEditorPage = () => {
         <CardEditor>
             <PageHeader>
                 <HeaderNav>
-                    <SVGIcon iconName='pen' />
+                    <SVGIcon iconName='back' />
                 </HeaderNav>
                 <HeaderTitle>Card editor</HeaderTitle>
                 <PageHeaderLine />

@@ -11,7 +11,7 @@ import NotFoundPage from './components/NotFoundPage'
 import {useFirebase} from './context/FirebaseContext'
 import {Cloud} from './theme/Cloud'
 
-const useRoutes = () => {
+const AppRoutes = () => {
     const {user} = useFirebase()
     if (!user) {
         return (
@@ -43,4 +43,4 @@ const useRoutes = () => {
     )
 }
 
-export default useRoutes
+export default AppRoutes

@@ -2,16 +2,21 @@ import styled from 'styled-components'
 import {breakpoints} from '../../theme'
 import {CardSide} from '../../types'
 import Button from '../Button'
-import {IconButton, SubmitButton} from '../common'
+import {IconButton} from '../common'
+import theme from 'styled-theming'
+
+const primaryColor = theme('theme', {
+    light: 'var(--blue)',
+    dark: 'var(--purple)',
+})
 
 export const StyledForm = styled.form`
     display: grid;
     align-items: center;
     width: 100%;
     justify-content: space-around;
-    gap: 10px;
-    row-gap: 24px;
     place-items: center;
+    column-gap: 12px;
     grid-template-rows: 1fr auto auto auto;
     grid-template-columns: 1fr auto;
     grid-template-areas:
@@ -33,7 +38,7 @@ export const Card = styled.div<{side: CardSide}>`
     position: relative;
     cursor: pointer;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     min-height: 400px;
     max-height: 400px;
     height: 100%;
@@ -73,6 +78,7 @@ export const CardContent = styled.textarea`
     overflow-wrap: break-word;
     border: 2px solid transparent;
     background-color: transparent;
+    color: black;
 
     &:focus {
         outline: none;
@@ -80,10 +86,17 @@ export const CardContent = styled.textarea`
         border-radius: 5px;
         border-color: rgba(7, 7, 7, 0.1);
     }
+
+    &::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: var(--font-xl);
+        text-transform: uppercase;
+    }
 `
 
 export const TurnCard = styled(IconButton)`
     grid-area: turn;
+    text-shadow: 0px 0px 25px rgba(${primaryColor}, 1);
 `
 
 export const CollectionSelectWrapper = styled.label`
@@ -93,10 +106,10 @@ export const CollectionSelectWrapper = styled.label`
     align-items: center;
     font-size: 1.5rem;
     gap: 10px;
+    margin-top: 20px;
 
     @media only screen and (min-width: ${breakpoints.TABLET}) {
         place-self: start;
-        margin-top: 20px;
     }
 `
 export const CollectionSelect = styled.select`
@@ -120,4 +133,5 @@ export const SaveButton = styled(Button)`
     height: 50px;
     font-family: inherit;
     font-size: 1.3rem;
+    margin-top: 24px;
 `

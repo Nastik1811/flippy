@@ -1,10 +1,18 @@
-import {Formik, FormikErrors} from 'formik'
-import {FormEvent, useState} from 'react'
-import {NavLink} from 'react-router-dom'
+import {ErrorMessage, Formik, FormikErrors} from 'formik'
+import {useState} from 'react'
 import {useFirebase} from '../../context/FirebaseContext'
 import {IAuthUserData} from '../../types'
 import Typography from '../Typography'
-import {AuthForm, Input, Submit, SwitchLink, Title} from './styled'
+import {
+    AuthForm,
+    ErrorContainer,
+    Input,
+    Label,
+    Submit,
+    SwitchLink,
+    Title,
+} from './styled'
+import * as Yup from 'yup'
 
 interface IFormStatus {
     message: string
@@ -38,6 +46,11 @@ const Signup = () => {
         type: '',
     })
 
+    const validationSchema = Yup.object({
+        email: Yup.string().required('Required'),
+        password: Yup.string().required('Required'),
+    })
+
     const createNewUser = async (data: IAuthUserData, resetForm: Function) => {
         try {
             app.createUser(data)
@@ -51,21 +64,33 @@ const Signup = () => {
     return (
         <Formik
             initialValues={{email: '', password: ''}}
-            validate={(values: IAuthUserData) => {
-                let errors: FormikErrors<IAuthUserData> = {}
-                if (!values.email) {
-                    errors.email = 'Required'
-                }
-                return errors
-            }}
+            validationSchema={validationSchema}
             onSubmit={(values, actions) => {
                 createNewUser(values, actions.resetForm)
             }}>
             <AuthForm>
                 <Title>REGISTER</Title>
-                <Input type='text' placeholder='name' name='name' />
-                <Input type='email' placeholder='email' name='email' />
-                <Input type='password' placeholder='password' name='password' />
+                <Label>
+                    Name
+                    <ErrorContainer>
+                        <ErrorMessage name='name' />
+                    </ErrorContainer>
+                    <Input type='text' placeholder='name' name='name' />
+                </Label>
+                <Label>
+                    Email
+                    <ErrorContainer>
+                        <ErrorMessage name='email' />
+                    </ErrorContainer>
+                    <Input type='text' placeholder='email' name='email' />
+                </Label>
+                <Label>
+                    Password
+                    <ErrorContainer>
+                        <ErrorMessage name='password' />
+                    </ErrorContainer>
+                    <Input type='text' placeholder='password' name='password' />
+                </Label>
 
                 <Submit as='button' type='submit'>
                     Create an account
