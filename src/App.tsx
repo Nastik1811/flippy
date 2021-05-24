@@ -4,21 +4,21 @@ import {ThemeProvider} from 'styled-components'
 import {FirebaseProvider} from './context/FirebaseContext'
 import {useTheme} from './hooks/useTheme'
 import AppRoutes from './AppRoutes'
+import Loader from './components/Loader'
 
 function App() {
     const {theme, switchTheme, themeLoaded} = useTheme()
 
     if (!themeLoaded) {
-        return <div>Loading</div>
+        return <Loader />
     }
 
     return (
         <FirebaseProvider>
             <Router>
                 <GlobalStyle theme={theme} />
-                <button onClick={switchTheme}>CLICK</button>
                 <ThemeProvider theme={{theme}}>
-                    <AppRoutes />
+                    <AppRoutes switchTheme={switchTheme} />
                 </ThemeProvider>
             </Router>
         </FirebaseProvider>

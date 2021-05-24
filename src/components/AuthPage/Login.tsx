@@ -50,7 +50,6 @@ const Login = () => {
                         name='password'
                     />
                 </Label>
-                <Caption>Forgot the password?</Caption>
                 <Submit as='button' type='submit'>
                     Login
                 </Submit>

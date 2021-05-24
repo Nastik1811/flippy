@@ -1,5 +1,5 @@
 import {Switch, Route, Redirect} from 'react-router-dom'
-import {AppContainer} from './App.style'
+import {AppContainer, ThemeSwitcher} from './App.style'
 import AppNavigation from './components/AppNavigation'
 import AuthPage from './components/AuthPage'
 import BottomNavigation from './components/BottomNavigation'
@@ -11,15 +11,22 @@ import NotFoundPage from './components/NotFoundPage'
 import {useFirebase} from './context/FirebaseContext'
 import {Cloud} from './theme/Cloud'
 
-const AppRoutes = () => {
+type AppRoutesPropsType = {
+    switchTheme: () => void
+}
+const AppRoutes = ({switchTheme}: AppRoutesPropsType) => {
     const {user} = useFirebase()
     if (!user) {
         return (
             <AppContainer>
                 <Cloud />
+                <ThemeSwitcher onClick={switchTheme} />
                 <Switch>
                     <Route exact path='/' component={Landing} />
                     <Route path='/auth' component={AuthPage} />
+                    <Redirect path='/home' to='/auth' />
+                    <Redirect path='/manage' to='/auth' />
+                    <Redirect path='/card' to='/auth' />
                     <Route component={NotFoundPage} />
                 </Switch>
             </AppContainer>
@@ -29,6 +36,7 @@ const AppRoutes = () => {
     return (
         <AppContainer>
             <Cloud />
+            <ThemeSwitcher onClick={switchTheme} />
             <AppNavigation />
             <Switch>
                 <Route path='/home' component={HomePage} />

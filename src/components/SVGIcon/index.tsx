@@ -22,6 +22,7 @@ const IconWrapper = styled.i`
     display: block;
     width: 28px;
     height: 28px;
+    color: white;
 `
 
 const SVGIcon: React.FC<{iconName: IconName}> = ({iconName}) => {
@@ -29,7 +30,7 @@ const SVGIcon: React.FC<{iconName: IconName}> = ({iconName}) => {
 
     return (
         <IconWrapper>
-            <Icon fill='currentColor' />
+            <Icon fill='white' />
         </IconWrapper>
     )
 }

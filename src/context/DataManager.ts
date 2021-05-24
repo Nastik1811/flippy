@@ -90,8 +90,7 @@ export class DataManger {
         finally{
             return collections
         }
-        
-        
+    
     }
 
     async createDefaultCollection(){

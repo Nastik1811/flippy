@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 import React, {useContext} from 'react'
+import Loader from '../components/Loader'
 import {DataManger} from './DataManager'
 import {Firebase} from './Firebase'
 
@@ -50,7 +51,7 @@ export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
     }, [app])
 
     if (!ready) {
-        return <div>Load...</div>
+        return <Loader />
     }
 
     return (
