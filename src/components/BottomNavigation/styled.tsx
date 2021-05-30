@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import {breakpoints} from '../../theme'
 import theme from 'styled-theming'
 
-const primaryColor = theme('theme', {
-    light: 'var(--sea)',
-    dark: 'var(--deep-purple)',
+export const primaryColor = theme('theme', {
+    light: '#abdef1',
+    dark: '#836ebb',
 })
 
 export const Container = styled.div`
@@ -17,7 +17,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgb(${primaryColor});
+    background-color: ${primaryColor};
     @media only screen and (min-width: ${breakpoints.DESKTOP}) {
         display: none;
     }

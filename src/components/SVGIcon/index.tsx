@@ -6,6 +6,12 @@ import {ReactComponent as pen} from '../../assets/icons/pen.svg'
 import {ReactComponent as user} from '../../assets/icons/user.svg'
 import {ReactComponent as back} from '../../assets/icons/back.svg'
 import styled from 'styled-components'
+import theme from 'styled-theming'
+
+export const currentColor = theme('theme', {
+    light: '#296c8b',
+    dark: '#ded4fc',
+})
 
 const icons = {
     home,
@@ -23,6 +29,18 @@ const IconWrapper = styled.i`
     width: 28px;
     height: 28px;
     color: white;
+
+    .icon-stroke {
+        fill: none;
+        stroke: ${currentColor};
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 1.5px;
+    }
+
+    .icon-fill {
+        fill: ${currentColor};
+    }
 `
 
 const SVGIcon: React.FC<{iconName: IconName}> = ({iconName}) => {
@@ -30,7 +48,7 @@ const SVGIcon: React.FC<{iconName: IconName}> = ({iconName}) => {
 
     return (
         <IconWrapper>
-            <Icon fill='white' />
+            <Icon />
         </IconWrapper>
     )
 }

@@ -1,4 +1,10 @@
 import styled from 'styled-components'
+import theme from 'styled-theming'
+
+export const primaryColor = theme('theme', {
+    light: 'rgb(240, 251, 255)',
+    dark: 'rgb(211, 199, 243)',
+})
 
 export const Window = styled.div`
     position: fixed;
@@ -23,7 +29,7 @@ export const Popup = styled.div`
     height: auto;
     min-height: 270px;
     border-radius: 10px;
-    background-color: rgb(240, 251, 255);
+    background-color: ${primaryColor};
     box-shadow: 0 0 20px rgba(0, 61, 87, 0.425);
     background-image: url('https://www.transparenttextures.com/patterns/groovepaper.png');
     padding: 15px 25px;
@@ -37,8 +43,7 @@ export const PopupHeader = styled.div`
 
 export const PopupTitle = styled.h3`
     display: inline;
-    font-family: $font-decorative;
-    color: $dark-blue-text;
+    color: rgb(33, 86, 105);
     font-size: 1.6rem;
 `
 
@@ -46,34 +51,21 @@ export const Hr = styled.hr`
     border-color: rgba(80, 132, 151, 0.589);
 `
 
-export const Content = styled.div`
+export const PopupContent = styled.div`
     flex-grow: 2;
     padding: 10px;
 `
 
-export const Container = styled.div`
+export const PopupContainer = styled.div`
     background-color: rgba(255, 255, 255, 0.5);
     display: flex;
     flex-direction: column;
-    text-align: center;
     border-radius: 15px;
     padding: 20px 0px;
     height: auto;
     width: 100%;
-`
-
-export const Message = styled.p`
-    font-family: $font-basic;
-    font-weight: 300;
-    font-size: 1.6rem;
-    color: #000;
-    margin: 5px;
-    cursor: default;
-    span {
-        color: $dark-blue-text;
-        font-family: $font-main;
-        font-weight: 500;
-    }
+    gap: 12px;
+    align-items: center;
 `
 
 export const PopupActions = styled.section`
@@ -82,15 +74,14 @@ export const PopupActions = styled.section`
     justify-content: flex-end;
 `
 
-export const Input = styled.input`
-    font-size: 1.7rem;
+export const PopupInput = styled.input`
+    font-size: 1.5rem;
     background: rgba(255, 255, 255, 0);
     width: 50%;
     padding: 5px;
     text-align: center;
     border: none;
     border-bottom: 2px dashed rgba(129, 184, 204, 0.6);
-    color: $dark-blue-text;
 
     &::placeholder {
         color: rgba(129, 184, 204, 0.795);

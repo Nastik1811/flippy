@@ -1,12 +1,4 @@
 import {ReactNode} from 'react'
-import {
-    Window,
-    Popup,
-    Content,
-    Container,
-    PopupHeader,
-    PopupActions,
-} from './styled'
 
 interface IHasChildren {
     children: ReactNode

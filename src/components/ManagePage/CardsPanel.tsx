@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react'
 import {useFirebase} from '../../context/FirebaseContext'
-import {Card} from '../../types'
-import {CardPreview, ItemsGrid} from './styled'
+import {CardType} from '../../types'
+import {Preview, ItemsGrid, NewItemLink} from './styled'
 
 const CardsPanel = () => {
     const {manager} = useFirebase()
-    const [cards, setCards] = useState<Card[] | null>(null)
+    const [cards, setCards] = useState<CardType[] | null>(null)
 
     useEffect(() => {
         manager!.getCards().then(data => setCards(data))
@@ -13,10 +13,11 @@ const CardsPanel = () => {
 
     return (
         <ItemsGrid>
+            <Preview>
+                <NewItemLink to='/card'>+</NewItemLink>
+            </Preview>
             {cards
-                ? cards?.map(c => (
-                      <CardPreview key={c.id}>{c.front}</CardPreview>
-                  ))
+                ? cards?.map(c => <Preview key={c.id}>{c.front}</Preview>)
                 : null}
         </ItemsGrid>
     )
