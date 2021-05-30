@@ -1,6 +1,7 @@
 
 import styled from 'styled-components'
 import { MAX_WIDTH } from './theme'
+import {ReactComponent as moon} from './assets/images/Moon.svg'
 
 export const AppContainer = styled.div`
     max-width: ${MAX_WIDTH};
@@ -10,17 +11,4 @@ export const AppContainer = styled.div`
     padding: 0 6vw;
     width: 100%;
     min-height: 100%;
-`
-export const ThemeSwitcher= styled.button`
-    position: absolute;
-    background-color: transparent;
-    outline:none;
-    border: none;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background-color: gray;
-    position: absolute;
-    top: 24px;
-    left: 24px;
 `

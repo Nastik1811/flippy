@@ -11,7 +11,7 @@ export type Collection = {
     name: string
 }
 
-export interface Card extends BaseCardDetails {
+export interface CardType extends BaseCardDetails {
     id: string
 }
 

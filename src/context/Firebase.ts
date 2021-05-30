@@ -19,18 +19,8 @@ export class Firebase {
                             displayName: name
                         })
                         this.app.firestore().collection('users').doc(cred.user.uid).set({
-                            user_name: name
+                            userName: name
                         })
-                        this.app.firestore()
-                            .collection('users')
-                            .doc(cred.user.uid)
-                            .collection('collections')
-                            .doc(cred.user.uid)
-                            .set({
-                                name: 'Default',
-                                created: new Date(),
-                                lastEdit: new Date()
-                            })
                     }
                 })
     }

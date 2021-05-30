@@ -38,10 +38,10 @@ export const GlobalStyle = createGlobalStyle`
             props.theme === 'light'
                 ? 'black'
                 : 'white'};
+    font-family: 'Comfortaa';
   }
 
   body {
-    font-family: 'Comfortaa';
     margin: 0;
     height: 100%;
     width: 100%;

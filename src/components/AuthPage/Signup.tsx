@@ -97,7 +97,7 @@ const Signup = () => {
                 </Submit>
 
                 <Typography>
-                    Already have an account?
+                    <span>Already have an account? </span>
                     <SwitchLink to='/auth/login'>Login</SwitchLink>
                 </Typography>
 

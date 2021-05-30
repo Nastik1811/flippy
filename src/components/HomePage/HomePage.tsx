@@ -10,17 +10,43 @@ import {
     PreviewContent,
     CollectionPreview,
     CollectionBoard,
+    PreviewName,
+    PreviewDetails,
 } from './styled'
 
 const message = `You seem to be new here. Let's add your first card! There is a lot of work ahead =D`
 
+type CollectionLink = {
+    id: string
+    name: string
+    cardsToReview: number
+}
+
+const temp: CollectionLink[] = [
+    {
+        id: '1',
+        name: 'German',
+        cardsToReview: 5,
+    },
+    {
+        id: '2',
+        name: 'English',
+        cardsToReview: 3,
+    },
+    {
+        id: '3',
+        name: 'Philosophy',
+        cardsToReview: 10,
+    },
+]
+
 const HomePage = () => {
     const {switchTheme} = useTheme()
     const [collections, setCollections] =
-        useState<string[] | undefined>(undefined)
+        useState<CollectionLink[] | undefined>(undefined)
 
     useEffect(() => {
-        setCollections(['Collection1', 'Collection2', 'Collection3'])
+        setCollections(temp)
     }, [])
 
     if (!collections) {
@@ -30,10 +56,10 @@ const HomePage = () => {
     return (
         <Layout>
             <GreetingContainer>
-                <h1>Hello, Anastasia</h1>
-                <p>{message}</p>
+                <Typography size='xl'>Hello, Anastasia</Typography>
+                <Typography size='m'>{message}</Typography>
                 <Button as='button' onClick={switchTheme}>
-                    Review all cards
+                    <Typography size='m'>Review all cards</Typography>
                 </Button>
                 <AddButton to='/card'>
                     <Typography onlyMobile>
@@ -42,11 +68,16 @@ const HomePage = () => {
                     <Typography onlyDesktop>Add Card</Typography>
                 </AddButton>
             </GreetingContainer>
-            <Typography>Choose a collection</Typography>
+            <Typography size='xl'>Choose a collection</Typography>
             <CollectionBoard>
                 {collections.map(c => (
-                    <CollectionPreview key={c}>
-                        <PreviewContent>{c}</PreviewContent>
+                    <CollectionPreview key={c.id}>
+                        <PreviewContent>
+                            <PreviewName>{c.name}</PreviewName>
+                            <PreviewDetails>
+                                {c.cardsToReview} cards to review
+                            </PreviewDetails>
+                        </PreviewContent>
                     </CollectionPreview>
                 ))}
             </CollectionBoard>

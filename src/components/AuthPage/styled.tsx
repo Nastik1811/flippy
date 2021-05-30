@@ -22,7 +22,7 @@ export const AuthForm = styled(Form)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
 `
 
 export const Input = styled(Field)`
@@ -56,14 +56,18 @@ export const Label = styled.label`
     grid-template-areas:
         'name error'
         'input input';
+    row-gap: 4px;
 `
 
 export const ErrorContainer = styled.div`
     grid-area: error;
     place-self: end;
+    color: rgb(${primaryColor});
+    font-weight: 600;
+    font-size: var(--font-xs);
 `
 export const Submit = styled(Button)`
-    margin-top: 1rem;
+    margin-top: 12px;
     font-size: 1.3rem;
 `
 

@@ -16,8 +16,8 @@ const Login = () => {
     const {app} = useFirebase()
 
     const validationSchema = Yup.object({
-        email: Yup.string().required('Required'),
-        password: Yup.string().required('Required'),
+        email: Yup.string().required('*Required'),
+        password: Yup.string().required('*Required'),
     })
 
     return (

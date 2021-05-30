@@ -34,6 +34,7 @@ export const Logo = styled(NavLink)`
     display: block;
     text-decoration: none;
     font-size: 2.2rem;
+    margin-left: 80px;
 `
 
 export const NavBar = styled.nav`

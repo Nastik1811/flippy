@@ -4,7 +4,7 @@ import Button from '../Button'
 import theme from 'styled-theming'
 
 const previewColor = theme('theme', {
-    light: 'rgb(206, 237, 252)',
+    light: '#abdef1',
     dark: '#9e88da',
 })
 
@@ -20,7 +20,7 @@ const borderColor = theme('theme', {
 
 export const Layout = styled.div`
     display: grid;
-    row-gap: 12px;
+    row-gap: 24px;
     margin-top: 2vw;
 `
 
@@ -96,5 +96,17 @@ export const PreviewContent = styled.div`
     width: 100%;
     height: 100%;
     padding: 1rem;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+`
+
+export const PreviewName = styled.span`
+    font-size: 1.5rem;
+`
+
+export const PreviewDetails = styled.span`
+    font-size: 1rem;
 `
