@@ -1,6 +1,6 @@
 import styled, {keyframes} from 'styled-components'
 import theme from 'styled-theming'
-import {ReactComponent as moon} from '../../assets/images/SVG/Moon.svg'
+import {ReactComponent as moon} from '../../assets/images/Moon.svg'
 import {breakpoints} from '../../theme'
 
 const glowColor = theme('theme', {
