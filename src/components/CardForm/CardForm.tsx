@@ -1,6 +1,6 @@
 import {useFormik} from 'formik'
 import {useState} from 'react'
-import {BaseCardDetails, CardSide, Collection} from '../../types'
+import {ICardDetails, CardSide, ICollection} from '../../../types'
 import * as Yup from 'yup'
 import Typography from '../Typography'
 import {
@@ -15,9 +15,9 @@ import {
 } from './styled'
 
 type CardFromPropsType = {
-    initialDetails: BaseCardDetails
-    collections: Collection[]
-    onSubmit: (details: BaseCardDetails) => void
+    initialDetails: ICardDetails
+    collections: ICollection[]
+    onSubmit: (details: ICardDetails) => void
 }
 
 const CardForm = ({
@@ -34,10 +34,10 @@ const CardForm = ({
     const validationSchema = Yup.object({
         front: Yup.string().required('You need to fill both card sides'),
         back: Yup.string().required('You need to fill both card sides'),
-        collection_id: Yup.string().required('Required'),
+        collectionId: Yup.string().required('Required'),
     })
 
-    const formik = useFormik<BaseCardDetails>({
+    const formik = useFormik<ICardDetails>({
         initialValues: initialDetails,
         onSubmit: onSubmit,
         validationSchema,
@@ -70,8 +70,8 @@ const CardForm = ({
             <CollectionSelectWrapper>
                 <Typography>Choose a collection</Typography>
                 <CollectionSelect
-                    name='collection_id'
-                    value={formik.values.collection_id}
+                    name='collectionId'
+                    value={formik.values.collectionId}
                     onChange={formik.handleChange}>
                     {collections.map(c => (
                         <option value={c.id} key={c.id}>

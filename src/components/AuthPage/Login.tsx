@@ -11,6 +11,7 @@ import {
     Title,
 } from './styled'
 import * as Yup from 'yup'
+import Typography from '../Typography'
 
 const Login = () => {
     const {app} = useFirebase()
@@ -32,6 +33,10 @@ const Login = () => {
             }}>
             <AuthForm>
                 <Title>LOGIN</Title>
+                <Typography size='xs'>
+                    <span>Don't have an account? </span>
+                    <SwitchLink to='/auth/signup'>Sign up here</SwitchLink>
+                </Typography>
                 <Label>
                     Email
                     <ErrorContainer>
@@ -53,10 +58,6 @@ const Login = () => {
                 <Submit as='button' type='submit'>
                     Login
                 </Submit>
-                <Caption>
-                    <span>Don't have an account? </span>
-                    <SwitchLink to='/auth/signup'>Sign up here</SwitchLink>
-                </Caption>
             </AuthForm>
         </Formik>
     )

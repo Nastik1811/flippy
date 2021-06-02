@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import {CardSide} from '../../types'
+import {CardSide} from '../../../types'
 
 export const StyledCard = styled.div<{isFlipped: boolean}>`
     position: relative;

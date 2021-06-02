@@ -1,7 +1,6 @@
 
 import styled from 'styled-components'
 import { MAX_WIDTH } from './theme'
-import {ReactComponent as moon} from './assets/images/Moon.svg'
 
 export const AppContainer = styled.div`
     max-width: ${MAX_WIDTH};

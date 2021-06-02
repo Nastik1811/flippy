@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import {Redirect} from 'react-router'
 import {useFirebase} from '../../context/FirebaseContext'
-import {BaseCardDetails, Collection} from '../../types'
+import {ICardDetails, ICollection} from '../../../types'
 import CardForm from '../CardForm'
 import SVGIcon from '../SVGIcon'
 import {
@@ -12,23 +12,23 @@ import {
     PageHeaderLine,
 } from './styled'
 
-const emptyDetails: BaseCardDetails = {
+const emptyDetails: ICardDetails = {
     front: '',
     back: '',
-    collection_id: '1',
+    collectionId: '1',
 }
 
 const CardEditorPage = () => {
     const {manager} = useFirebase()
     const [initialDetails, setInitialDetails] = useState(emptyDetails)
-    const [collections, setCollections] = useState<Collection[]>([])
+    const [collections, setCollections] = useState<ICollection[]>([])
     const [completed, setCompleted] = useState(false)
 
     useEffect(() => {
         manager!.getCollections().then(data => setCollections(data))
     }, [manager])
 
-    const onSubmit = (details: BaseCardDetails) => {
+    const onSubmit = (details: ICardDetails) => {
         try {
             manager!.addCard(details)
             setCompleted(true)

@@ -41,8 +41,8 @@ const Button = styled(Link)`
         height: 100%;
         border-radius: inherit;
         border: 1px solid #fcc02a;
-        left: 0;
-        bottom: 0;
+        left: 3px;
+        bottom: 3px;
         transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
@@ -54,7 +54,7 @@ const Button = styled(Link)`
         transform: translate(0, -8px);
         &::before {
             border: 1px solid #d6a832;
-            transform: translate(4px, -4px);
+            transform: translate(2px, -2px);
         }
     }
 

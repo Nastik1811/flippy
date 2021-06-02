@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react'
+import {useFirebase} from '../../context/FirebaseContext'
 import {useTheme} from '../../hooks/useTheme'
+import {ICard} from '../../../types'
 import Button from '../Button'
+import Loader from '../Loader'
 import SVGIcon from '../SVGIcon'
 import Typography from '../Typography'
 import {
@@ -22,35 +25,21 @@ type CollectionLink = {
     cardsToReview: number
 }
 
-const temp: CollectionLink[] = [
-    {
-        id: '1',
-        name: 'German',
-        cardsToReview: 5,
-    },
-    {
-        id: '2',
-        name: 'English',
-        cardsToReview: 3,
-    },
-    {
-        id: '3',
-        name: 'Philosophy',
-        cardsToReview: 10,
-    },
-]
-
 const HomePage = () => {
     const {switchTheme} = useTheme()
-    const [collections, setCollections] =
+    const {manager} = useFirebase()
+    const [collections, collection] =
         useState<CollectionLink[] | undefined>(undefined)
-
+    const [cards, setCards] = useState<ICard[] | undefined>(undefined)
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        setCollections(temp)
-    }, [])
+        let cardsLoading = manager.getCardsToReview().then(setCards)
+        let collection = manager.getCollections().then()
+        Promise.all([cardsLoading]).then(() => setIsLoading(false))
+    }, [manager])
 
-    if (!collections) {
-        return <div>Loading</div>
+    if (isLoading) {
+        return <Loader />
     }
 
     return (
@@ -58,7 +47,7 @@ const HomePage = () => {
             <GreetingContainer>
                 <Typography size='xl'>Hello, Anastasia</Typography>
                 <Typography size='m'>{message}</Typography>
-                <Button as='button' onClick={switchTheme}>
+                <Button to='/'>
                     <Typography size='m'>Review all cards</Typography>
                 </Button>
                 <AddButton to='/card'>
@@ -70,7 +59,7 @@ const HomePage = () => {
             </GreetingContainer>
             <Typography size='xl'>Choose a collection</Typography>
             <CollectionBoard>
-                {collections.map(c => (
+                {collections?.map(c => (
                     <CollectionPreview key={c.id}>
                         <PreviewContent>
                             <PreviewName>{c.name}</PreviewName>

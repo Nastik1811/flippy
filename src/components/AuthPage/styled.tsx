@@ -22,7 +22,7 @@ export const AuthForm = styled(Form)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
 `
 
 export const Input = styled(Field)`
@@ -78,4 +78,13 @@ export const Caption = styled.div`
     display: inline-block;
 `
 
-export const Title = styled.h1``
+export const Title = styled.h1`
+    margin-bottom: 0;
+`
+
+export const ProvidersContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    width: 100%;
+`

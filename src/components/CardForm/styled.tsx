@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {breakpoints} from '../../theme'
-import {CardSide} from '../../types'
+import {CardSide} from '../../../types'
 import Button from '../Button'
 import {IconButton} from '../common'
 import theme from 'styled-theming'

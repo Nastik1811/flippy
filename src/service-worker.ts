@@ -1,13 +1,6 @@
 /// <reference lib="webworker" />
 /* eslint-disable no-restricted-globals */
 
-// This service worker can be customized!
-// See https://developers.google.com/web/tools/workbox/modules
-// for the list of available Workbox modules, or add any other
-// code you'd like.
-// You can also remove this file if you'd prefer not to use a
-// service worker, and the Workbox build step will be skipped.
-
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
@@ -28,6 +21,7 @@ precacheAndRoute(self.__WB_MANIFEST);
 // are fulfilled with your index.html shell. Learn more at
 // https://developers.google.com/web/fundamentals/architecture/app-shell
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
+
 registerRoute(
   // Return false to exempt requests from being fulfilled by index.html.
   ({ request, url }: { request: Request; url: URL }) => {
@@ -78,3 +72,15 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+  // Cache Google Fonts with a stale-while-revalidate strategy, with
+  // a maximum number of entries.
+  registerRoute(
+    ({url}) => url.origin === 'https://fonts.googleapis.com' ||
+               url.origin === 'https://fonts.gstatic.com',
+    new StaleWhileRevalidate({
+      cacheName: 'google-fonts',
+      plugins: [
+        new ExpirationPlugin({maxEntries: 20}),
+      ],
+    }),
+  );

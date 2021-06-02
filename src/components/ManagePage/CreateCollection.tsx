@@ -19,7 +19,7 @@ const CollectionCreate = () => {
 
     const handleSubmit = async (event: FormEvent) => {
         try {
-            await manager.addCollection(name)
+            await manager.addCollection({name})
         } catch (e) {
             alert(e)
         } finally {

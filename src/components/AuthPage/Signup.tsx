@@ -1,18 +1,20 @@
 import {ErrorMessage, Formik, FormikErrors} from 'formik'
 import {useState} from 'react'
 import {useFirebase} from '../../context/FirebaseContext'
-import {IAuthUserData} from '../../types'
+import {IAuthUserData} from '../../../types'
 import Typography from '../Typography'
 import {
     AuthForm,
     ErrorContainer,
     Input,
     Label,
+    ProvidersContainer,
     Submit,
     SwitchLink,
     Title,
 } from './styled'
 import * as Yup from 'yup'
+import SVGIcon from '../SVGIcon'
 
 interface IFormStatus {
     message: string
@@ -70,6 +72,10 @@ const Signup = () => {
             }}>
             <AuthForm>
                 <Title>REGISTER</Title>
+                <Typography size='xs'>
+                    <span>Already have an account? </span>
+                    <SwitchLink to='/auth/login'>Login</SwitchLink>
+                </Typography>
                 <Label>
                     Name
                     <ErrorContainer>
@@ -96,10 +102,15 @@ const Signup = () => {
                     Create an account
                 </Submit>
 
-                <Typography>
-                    <span>Already have an account? </span>
-                    <SwitchLink to='/auth/login'>Login</SwitchLink>
-                </Typography>
+                <Typography size='xs'>----- or sign up with -----</Typography>
+
+                <ProvidersContainer>
+                    <SVGIcon iconName='facebook' size={32} />
+                    <button onClick={app.createUserUsingProvider}>
+                        <SVGIcon iconName='google' size={32} />
+                    </button>
+                    <SVGIcon iconName='linkedin' size={32} />
+                </ProvidersContainer>
 
                 {displayFormStatus && (
                     <div className='formStatus'>

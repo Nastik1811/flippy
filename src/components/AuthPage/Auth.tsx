@@ -1,4 +1,4 @@
-import {NavLink, Switch, Route, Redirect} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 import {AuthContainer} from './styled'

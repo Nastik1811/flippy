@@ -5,6 +5,10 @@ import {ReactComponent as settings} from '../../assets/icons/settings.svg'
 import {ReactComponent as pen} from '../../assets/icons/pen.svg'
 import {ReactComponent as user} from '../../assets/icons/user.svg'
 import {ReactComponent as back} from '../../assets/icons/back.svg'
+import {ReactComponent as git} from '../../assets/icons/github.svg'
+import {ReactComponent as linkedin} from '../../assets/icons/linkedin.svg'
+import {ReactComponent as google} from '../../assets/icons/google.svg'
+import {ReactComponent as facebook} from '../../assets/icons/facebook.svg'
 import styled from 'styled-components'
 import theme from 'styled-theming'
 
@@ -20,14 +24,23 @@ const icons = {
     pen,
     user,
     back,
+    git,
+    google,
+    facebook,
+    linkedin,
+}
+
+interface SVGIconPropsType {
+    iconName: IconName
+    readonly size?: number
 }
 
 type IconName = keyof typeof icons
 
-const IconWrapper = styled.i`
+const IconWrapper = styled.i<{size?: number}>`
     display: block;
-    width: 28px;
-    height: 28px;
+    width: ${props => (props.size ? `${props.size}px` : '24px')};
+    height: ${props => (props.size ? `${props.size}px` : '24px')};
     color: white;
 
     .icon-stroke {
@@ -43,11 +56,11 @@ const IconWrapper = styled.i`
     }
 `
 
-const SVGIcon: React.FC<{iconName: IconName}> = ({iconName}) => {
+const SVGIcon: React.FC<SVGIconPropsType> = ({iconName, size}) => {
     const Icon = icons[iconName]
 
     return (
-        <IconWrapper>
+        <IconWrapper size={size}>
             <Icon />
         </IconWrapper>
     )

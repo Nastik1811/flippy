@@ -8,6 +8,7 @@ import HomePage from './components/HomePage'
 import Landing from './components/Landing'
 import ManagePage from './components/ManagePage'
 import NotFoundPage from './components/NotFoundPage'
+import ReviewPage from './components/ReviewPage'
 import {ThemeSwitcher} from './components/ThemeSwitcher'
 import {useFirebase} from './context/FirebaseContext'
 import {Cloud} from './theme/Cloud'
@@ -43,6 +44,7 @@ const AppRoutes = ({switchTheme}: AppRoutesPropsType) => {
                 <Route path='/home' component={HomePage} />
                 <Route path='/manage' component={ManagePage} />
                 <Route path='/card' component={CardEditorPage} />
+                <Route path='/review' component={ReviewPage} />
                 <Redirect path='/auth' to='/home' />
                 <Redirect path='/' to='/home' />
                 <Route component={NotFoundPage} />

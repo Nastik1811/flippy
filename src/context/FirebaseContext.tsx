@@ -20,7 +20,6 @@ export interface IFirebaseContext {
     app: Firebase
     manager: DataManger
     user: firebase.User
-    authProviders?: string[]
 }
 
 export const FirebaseContext = React.createContext({} as IFirebaseContext)
@@ -32,7 +31,9 @@ export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
     const [manager, setManger] = React.useState<DataManger | null>(null)
 
     React.useEffect(() => {
-        setApp(new Firebase(config))
+        const app = new Firebase(config)
+        //app.setMessaging()
+        setApp(app)
     }, [])
 
     React.useEffect(() => {
@@ -54,6 +55,7 @@ export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
         return <Loader />
     }
 
+    console.log(user)
     return (
         <FirebaseContext.Provider
             value={
