@@ -1,11 +1,11 @@
 import {useEffect, useState} from 'react'
 import {useFirebase} from '../../context/FirebaseContext'
-import {useTheme} from '../../hooks/useTheme'
-import {ICard} from '../../../types'
+import {ICard, ICollection} from '../../../types'
 import Button from '../Button'
 import Loader from '../Loader'
 import SVGIcon from '../SVGIcon'
 import Typography from '../Typography'
+import path from '../../assets/images/girl2.png'
 import {
     AddButton,
     GreetingContainer,
@@ -16,27 +16,41 @@ import {
     PreviewName,
     PreviewDetails,
 } from './styled'
+import styled from 'styled-components'
 
-const message = `You seem to be new here. Let's add your first card! There is a lot of work ahead =D`
+const Image = styled.div`
+    position: relative;
+    top: -50px;
+    height: 600px;
+    text-align: center;
+    background: url(${path}) no-repeat center;
+`
 
-type CollectionLink = {
+interface CollectionLink {
     id: string
     name: string
     cardsToReview: number
 }
 
 const HomePage = () => {
-    const {switchTheme} = useTheme()
     const {manager} = useFirebase()
-    const [collections, collection] =
-        useState<CollectionLink[] | undefined>(undefined)
-    const [cards, setCards] = useState<ICard[] | undefined>(undefined)
+    const [collections, setCollections] = useState<ICollection[]>([])
+    const [cards, setCards] = useState<ICard[]>([])
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        let cardsLoading = manager.getCardsToReview().then(setCards)
-        let collection = manager.getCollections().then()
-        Promise.all([cardsLoading]).then(() => setIsLoading(false))
+        let cardsLoad = manager.getCardsToReview().then(setCards)
+        let collectionsLoad = manager.getCollections().then(setCollections)
+        Promise.all([cardsLoad, collectionsLoad]).then(() =>
+            setIsLoading(false)
+        )
     }, [manager])
+
+    const isUserNew = false
+    const message = isUserNew
+        ? `You seem to be new here. Let's add your first card! There is a lot of work ahead :)`
+        : cards?.length && cards?.length > 0
+        ? `   You have something to repeat. ${cards?.length} cards are awaiting you... Let’s start learning!`
+        : `There are no cards ready to repeat. But you can add new one any time! `
 
     if (isLoading) {
         return <Loader />
@@ -57,15 +71,13 @@ const HomePage = () => {
                     <Typography onlyDesktop>Add Card</Typography>
                 </AddButton>
             </GreetingContainer>
-            <Typography size='xl'>Choose a collection</Typography>
+            <Typography size='xl'>Collection to Review</Typography>
             <CollectionBoard>
                 {collections?.map(c => (
                     <CollectionPreview key={c.id}>
                         <PreviewContent>
                             <PreviewName>{c.name}</PreviewName>
-                            <PreviewDetails>
-                                {c.cardsToReview} cards to review
-                            </PreviewDetails>
+                            <PreviewDetails>2 cards to review</PreviewDetails>
                         </PreviewContent>
                     </CollectionPreview>
                 ))}

@@ -1,17 +1,12 @@
 import {BrowserRouter as Router} from 'react-router-dom'
-import {GlobalStyle} from './theme/GlobalStyles'
+import {GlobalStyle} from '../../theme/GlobalStyles'
 import {ThemeProvider} from 'styled-components'
-import {FirebaseProvider} from './context/FirebaseContext'
-import {useTheme} from './hooks/useTheme'
+import {FirebaseProvider} from '../../context/FirebaseContext'
+import {useTheme} from '../../hooks/useTheme'
 import AppRoutes from './AppRoutes'
-import Loader from './components/Loader'
 
 function App() {
-    const {theme, switchTheme, themeLoaded} = useTheme()
-
-    if (!themeLoaded) {
-        return <Loader />
-    }
+    const {theme, switchTheme} = useTheme()
 
     return (
         <FirebaseProvider>

@@ -1,6 +1,6 @@
 
 import styled from 'styled-components'
-import { MAX_WIDTH } from './theme'
+import { MAX_WIDTH } from '../../theme'
 
 export const AppContainer = styled.div`
     max-width: ${MAX_WIDTH};

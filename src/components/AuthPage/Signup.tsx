@@ -8,6 +8,7 @@ import {
     ErrorContainer,
     Input,
     Label,
+    ProviderAuth,
     ProvidersContainer,
     Submit,
     SwitchLink,
@@ -106,9 +107,9 @@ const Signup = () => {
 
                 <ProvidersContainer>
                     <SVGIcon iconName='facebook' size={32} />
-                    <button onClick={app.createUserUsingProvider}>
+                    <ProviderAuth onClick={app.createUserUsingProvider}>
                         <SVGIcon iconName='google' size={32} />
-                    </button>
+                    </ProviderAuth>
                     <SVGIcon iconName='linkedin' size={32} />
                 </ProvidersContainer>
 

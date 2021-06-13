@@ -74,7 +74,7 @@ self.addEventListener('message', (event) => {
 // Any other custom service worker logic can go here.
   // Cache Google Fonts with a stale-while-revalidate strategy, with
   // a maximum number of entries.
-  registerRoute(
+registerRoute(
     ({url}) => url.origin === 'https://fonts.googleapis.com' ||
                url.origin === 'https://fonts.gstatic.com',
     new StaleWhileRevalidate({

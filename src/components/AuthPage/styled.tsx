@@ -88,3 +88,7 @@ export const ProvidersContainer = styled.div`
     gap: 24px;
     width: 100%;
 `
+export const ProviderAuth = styled.button`
+    background-color: transparent;
+    border: none;
+`

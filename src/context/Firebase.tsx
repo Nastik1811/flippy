@@ -29,10 +29,10 @@ export class Firebase {
             .createUserWithEmailAndPassword(email, password)
             .then(cred => {
                 if (cred.user) {
-                    cred.user.updateProfile({
+                    const updatePromise = cred.user.updateProfile({
                         displayName: name,
                     })
-                    cred.user
+                    const varificationPpromise = cred.user
                         .sendEmailVerification()
                         .then(function () {
                             console.log('sent')
@@ -40,13 +40,20 @@ export class Firebase {
                         .catch(function (error) {
                             console.log(error)
                         })
-                    this.app
+                    const createDocPromise = this.app
                         .firestore()
                         .collection('users')
                         .doc(cred.user.uid)
                         .set({
                             userName: name,
+                            notificationTokens: [],
                         })
+
+                    return Promise.all([
+                        updatePromise,
+                        varificationPpromise,
+                        createDocPromise,
+                    ])
                 }
             })
     }
@@ -66,7 +73,20 @@ export class Firebase {
     login = async ({email, password}: IAuthUserData) =>
         await this.app.auth().signInWithEmailAndPassword(email, password)
 
-    setMessaging = () => {
-        this.app.messaging().getToken({})
+    setMessaging = (userId: string) => {
+        this.app
+            .messaging()
+            .getToken({vapidKey: process.env.REACT_APP_VAPID_KEY})
+            .then(token => {
+                token &&
+                    this.app
+                        .firestore()
+                        .collection('users')
+                        .doc(userId)
+                        .update({
+                            notificationTokens:
+                                firebase.firestore.FieldValue.arrayUnion(token),
+                        })
+            })
     }
 }

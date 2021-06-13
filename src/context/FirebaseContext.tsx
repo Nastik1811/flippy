@@ -32,7 +32,6 @@ export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
 
     React.useEffect(() => {
         const app = new Firebase(config)
-        //app.setMessaging()
         setApp(app)
     }, [])
 
@@ -55,7 +54,6 @@ export const FirebaseProvider = ({children}: {children: React.ReactNode}) => {
         return <Loader />
     }
 
-    console.log(user)
     return (
         <FirebaseContext.Provider
             value={
