@@ -62,11 +62,7 @@ export class Firebase {
         this.app
             .auth()
             .signInWithPopup(this.googleProvider)
-            .then(result => {
-                /** @type {firebase.auth.OAuthCredential} */
-                var credential = result.credential
-                // ...
-            })
+            .then(result => {})
             .catch(error => {})
     }
 

@@ -1,8 +1,7 @@
-import {ErrorMessage, Formik, FormikErrors} from 'formik'
+import {ErrorMessage, Formik} from 'formik'
 import {useFirebase} from '../../context/FirebaseContext'
 import {
     AuthForm,
-    Caption,
     Input,
     ErrorContainer,
     Label,

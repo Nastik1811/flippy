@@ -4,12 +4,13 @@ import {StyledCard, CardContent, SideView, TurnCardCaption} from './styled'
 type CardPropsType = {
     card: ICard
     isFlipped: boolean
+    isNew: boolean
     onClick: () => void
 }
 
-const Card = ({card, isFlipped, onClick}: CardPropsType) => {
+const Card = ({card, isFlipped, onClick, isNew}: CardPropsType) => {
     return (
-        <StyledCard isFlipped={isFlipped} onClick={onClick}>
+        <StyledCard isFlipped={isFlipped} isNew={isNew} onClick={onClick}>
             <SideView side='front'>
                 <CardContent>{card.front}</CardContent>
             </SideView>

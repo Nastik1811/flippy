@@ -13,15 +13,8 @@ import {
 } from './styled'
 import {IconButton} from '../common'
 
-const emptyDetails: ICardDetails = {
-    front: '',
-    back: '',
-    collectionId: '1',
-}
-
 const CardEditorPage = () => {
     const {manager} = useFirebase()
-    const [initialDetails, setInitialDetails] = useState(emptyDetails)
     const [collections, setCollections] = useState<ICollection[]>([])
     const [completed, setCompleted] = useState(false)
     const history = useHistory()
@@ -43,7 +36,7 @@ const CardEditorPage = () => {
         return <Redirect to='/manage/cards' />
     }
 
-    return initialDetails ? (
+    return (
         <CardEditor>
             <PageHeader>
                 <HeaderNav>
@@ -54,14 +47,8 @@ const CardEditorPage = () => {
                 <HeaderTitle>Card editor</HeaderTitle>
                 <PageHeaderLine />
             </PageHeader>
-            <CardForm
-                initialDetails={initialDetails}
-                collections={collections}
-                onSubmit={onSubmit}
-            />
+            <CardForm collections={collections} onSubmit={onSubmit} />
         </CardEditor>
-    ) : (
-        <div>Loading...</div>
     )
 }
 

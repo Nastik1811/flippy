@@ -46,7 +46,14 @@ const ReviewPage = () => {
 
     const handleMarkClick = (card: ICard, ease: Ease) => {
         manager.createReview(card, ease)
-        animateCardFlip()
+        if (left !== 0) {
+            animateCardFlip()
+            setLeft(left - 1)
+            setCardIndex(currentCardIndex + 1)
+        } else {
+            setShowCongrats(true)
+            setIsOver(true)
+        }
     }
 
     const animateCardFlip = () => {
@@ -70,7 +77,7 @@ const ReviewPage = () => {
         <Layout>
             <ReviewContainer>
                 <SessionInfo>
-                    <Typography>{name}</Typography>
+                    <Typography size='l'>{name}</Typography>
                     <Typography>cards left: {left}</Typography>
                     <Timer time={time} />
                 </SessionInfo>
@@ -82,6 +89,7 @@ const ReviewPage = () => {
                         setVisible(true)
                     }}
                     isFlipped={isFlipped}
+                    isNew={isNew}
                 />
 
                 {isVisible && (
@@ -99,7 +107,7 @@ const ReviewPage = () => {
                             }
                         />
                         <Mark
-                            name='hard'
+                            name='easy'
                             onClick={() =>
                                 handleMarkClick(cards[currentCardIndex], 'easy')
                             }
@@ -107,6 +115,7 @@ const ReviewPage = () => {
                     </MarkPanel>
                 )}
             </ReviewContainer>
+            {showCongrats && <div>showCongrats</div>}
         </Layout>
     )
 }

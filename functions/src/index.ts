@@ -21,12 +21,13 @@ export const createDefaultCollection = functions.auth.user().onCreate(
 export const updateCardProgress = 
 functions.firestore.document('users/{userId}/reviews/{reviewId}').onCreate(
     (snap, context) => {
-       const reviewData = snap.data()
+       const reviewData = snap.data();
        const nextIntervalInMs = getInterval(reviewData.cardStatus, reviewData.ease, reviewData.previousInterval, reviewData.delay)
-       const status = getStatus(reviewData.status, reviewData.ease, nextIntervalInMs)
+       const status = getStatus(reviewData.cardStatus, reviewData.ease, nextIntervalInMs)
    
        const lastReview = new Date()
-       const scheduledReview = new Date().setMilliseconds(nextIntervalInMs)
+       const scheduledReview = new Date()
+       scheduledReview.setMilliseconds(nextIntervalInMs)
 
        return admin.firestore().collection('users')
        .doc(context.params.userId).collection('cards')
@@ -34,7 +35,8 @@ functions.firestore.document('users/{userId}/reviews/{reviewId}').onCreate(
        .update({
             lastReview,
             scheduledReview,
-            status
+            status,
+            reviewsNumber: reviewData.reviewsNumber
         })
     }
 )

@@ -42,7 +42,7 @@ export class DataManger {
             front: doc.data().front,
             back: doc.data().back,
             collectionId: doc.data().collectionId,
-            reviewsNumber: doc.data().reviewNumber,
+            reviewsNumber: doc.data().reviewsNumber,
             status: doc.data().status,
             scheduledReview: doc.data().scheduledReview.toDate(),
             lastReview: doc.data().lastReview?.toDate(),
@@ -137,16 +137,17 @@ export class DataManger {
         const today = new Date()
         const previousInterval = card.lastReview ? card.scheduledReview!.getDate() - card.lastReview.getDate() : 0
         const delay = today.getDate() - card.scheduledReview!.getDate()
-        const reviewNumber = ++card.reviewsNumber 
+        const reviewsNumber = card.reviewsNumber + 1
         const review: IReviewDetails = {
             cardId: card.id,
             cardStatus: card.status,
             previousInterval, 
             delay, 
             ease,
-            reviewDate: today
+            reviewDate: today,
+            reviewsNumber
         }
-        this.userRef.collection('reviews').doc(`${card.id}_${reviewNumber}`).set(review);
+        this.userRef.collection('reviews').doc(`${card.id}_${reviewsNumber}`).set(review);
     }
 
     async getTotalRepeatNumber(){

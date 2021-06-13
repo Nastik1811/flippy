@@ -26,17 +26,18 @@ const Image = styled.div`
     background: url(${path}) no-repeat center;
 `
 
-interface CollectionLink {
-    id: string
-    name: string
-    cardsToReview: number
-}
+// interface ICollectionLink {
+//     id: string
+//     name: string
+//     cardsToReview: number
+// }
 
 const HomePage = () => {
     const {manager, user} = useFirebase()
     const [collections, setCollections] = useState<ICollection[]>([])
     const [cards, setCards] = useState<ICard[]>([])
     const [isLoading, setIsLoading] = useState(true)
+
     useEffect(() => {
         let cardsLoad = manager.getCardsToReview().then(setCards)
         let collectionsLoad = manager.getCollections().then(setCollections)
@@ -48,8 +49,8 @@ const HomePage = () => {
     const isUserNew = false
     const message = isUserNew
         ? `You seem to be new here. Let's add your first card! There is a lot of work ahead :)`
-        : cards?.length && cards?.length > 0
-        ? `   You have something to repeat. ${cards?.length} cards are awaiting you... Let’s start learning!`
+        : cards.length > 0
+        ? `   You have something to repeat. ${cards.length} cards are awaiting you... Let’s start learning!`
         : `There are no cards ready to repeat. But you can add new one any time! `
 
     if (isLoading) {
@@ -61,9 +62,11 @@ const HomePage = () => {
             <GreetingContainer>
                 <Typography size='xl'>Hello, {user.displayName}</Typography>
                 <Typography size='m'>{message}</Typography>
-                <Button to='/review'>
-                    <Typography size='m'>Review all cards</Typography>
-                </Button>
+                {cards.length > 0 && (
+                    <Button to='/review'>
+                        <Typography size='m'>Review all cards</Typography>
+                    </Button>
+                )}
                 <AddButton to='/card'>
                     <Typography onlyMobile>
                         <SVGIcon iconName='pen' />
@@ -72,16 +75,22 @@ const HomePage = () => {
                 </AddButton>
             </GreetingContainer>
             <Typography size='xl'>Collection to Review</Typography>
-            <CollectionBoard>
-                {collections?.map(c => (
-                    <CollectionPreview key={c.id}>
-                        <PreviewContent>
-                            <PreviewName>{c.name}</PreviewName>
-                            <PreviewDetails>2 cards to review</PreviewDetails>
-                        </PreviewContent>
-                    </CollectionPreview>
-                ))}
-            </CollectionBoard>
+            {collections.length > 0 ? (
+                <CollectionBoard>
+                    {collections?.map(c => (
+                        <CollectionPreview key={c.id}>
+                            <PreviewContent>
+                                <PreviewName>{c.name}</PreviewName>
+                                <PreviewDetails>
+                                    2 cards to review
+                                </PreviewDetails>
+                            </PreviewContent>
+                        </CollectionPreview>
+                    ))}
+                </CollectionBoard>
+            ) : (
+                <Image />
+            )}
         </Layout>
     )
 }

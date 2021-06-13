@@ -1,11 +1,12 @@
-import {TimeContainer, Time} from './styled'
+import Typography from '../Typography'
+import {TimeContainer} from './styled'
 
 const Timer = ({time}: {time: number}) => {
     return (
         <TimeContainer>
-            <Time>
+            <Typography size='l'>
                 {Math.floor((time / 60) % 60)}:{Math.floor(time % 60)}
-            </Time>
+            </Typography>
         </TimeContainer>
     )
 }

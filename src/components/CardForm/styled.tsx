@@ -47,7 +47,7 @@ export const Card = styled.div<{side: CardSide}>`
     //box-shadow: 0px 0px 30px rgba(51, 95, 121, 0.2);
     transform-style: preserve-3d;
     transform: ${props => (props.side === 'back' ? 'rotateY(180deg)' : 'none')};
-    transition: all 5s 0.2s cubic-bezier(0.445, -0.15, 0.55, 1.35);
+    transition: all 1s cubic-bezier(0.445, -0.15, 0.55, 1.35);
 `
 
 export const SideView = styled.div<{side: CardSide}>`

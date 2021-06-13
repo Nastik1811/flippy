@@ -15,16 +15,17 @@ import {
 } from './styled'
 
 type CardFromPropsType = {
-    initialDetails: ICardDetails
     collections: ICollection[]
     onSubmit: (details: ICardDetails) => void
 }
 
-const CardForm = ({
-    initialDetails,
-    collections,
-    onSubmit,
-}: CardFromPropsType) => {
+const emptyDetails: ICardDetails = {
+    front: '',
+    back: '',
+    collectionId: '1',
+}
+
+const CardForm = ({collections, onSubmit}: CardFromPropsType) => {
     const [targetSide, setTargetSide] = useState<CardSide>('front')
 
     const flipSide = () => {
@@ -38,7 +39,7 @@ const CardForm = ({
     })
 
     const formik = useFormik<ICardDetails>({
-        initialValues: initialDetails,
+        initialValues: emptyDetails,
         onSubmit: onSubmit,
         validationSchema,
         validateOnChange: false,

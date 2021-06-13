@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import {CardSide} from '../../../types'
 
-export const StyledCard = styled.div<{isFlipped: boolean}>`
+export const StyledCard = styled.div<{isFlipped: boolean; isNew: boolean}>`
     position: relative;
     cursor: pointer;
     width: 100%;
@@ -84,8 +84,17 @@ export const ReviewContainer = styled.div`
     align-items: center;
     margin: auto;
 `
-export const TimeContainer = styled.div``
+export const TimeContainer = styled.div`
+    grid-row: 1 / span 2;
+    grid-column: 2;
+    align-self: center;
+`
 export const Time = styled.span``
-export const SessionInfo = styled.div``
-export const ReviewTitle = styled.span``
+export const SessionInfo = styled.div`
+    width: 100%;
+    display: grid;
+    grid-auto-flow: rows;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+`
 export const CardsLeft = styled.span``

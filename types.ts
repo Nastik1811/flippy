@@ -35,6 +35,7 @@ export interface IReviewDetails{
     delay: number 
     ease: Ease
     reviewDate: Date
+    reviewsNumber: number
 }
 
 export interface IReview extends IReviewDetails{

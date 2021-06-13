@@ -1,5 +1,4 @@
-import {ErrorMessage, Formik, FormikErrors} from 'formik'
-import {useState} from 'react'
+import {ErrorMessage, Formik} from 'formik'
 import {useFirebase} from '../../context/FirebaseContext'
 import {IAuthUserData} from '../../../types'
 import Typography from '../Typography'
@@ -17,37 +16,28 @@ import {
 import * as Yup from 'yup'
 import SVGIcon from '../SVGIcon'
 
-interface IFormStatus {
-    message: string
-    type: string
-}
+// interface IFormStatus {
+//     message: string
+//     type: string
+// }
 
-interface IFormStatusProps {
-    [key: string]: IFormStatus
-}
-
-const formStatusProps: IFormStatusProps = {
-    success: {
-        message: 'Signed up successfully.',
-        type: 'success',
-    },
-    duplicate: {
-        message: 'Email-id already exist. Please use different email-id.',
-        type: 'error',
-    },
-    error: {
-        message: 'Something went wrong. Please try again.',
-        type: 'error',
-    },
-}
+// const formStatusProps: IFormStatusProps = {
+//     success: {
+//         message: 'Signed up successfully.',
+//         type: 'success',
+//     },
+//     duplicate: {
+//         message: 'Email-id already exist. Please use different email-id.',
+//         type: 'error',
+//     },
+//     error: {
+//         message: 'Something went wrong. Please try again.',
+//         type: 'error',
+//     },
+// }
 
 const Signup = () => {
     const {app} = useFirebase()
-    const [displayFormStatus, setDisplayFormStatus] = useState(false)
-    const [formStatus, setFormStatus] = useState<IFormStatus>({
-        message: '',
-        type: '',
-    })
 
     const validationSchema = Yup.object({
         email: Yup.string().required('Required'),
@@ -59,8 +49,6 @@ const Signup = () => {
             app.createUser(data)
         } catch (error) {
             console.log(error)
-        } finally {
-            setDisplayFormStatus(true)
         }
     }
 
@@ -112,16 +100,6 @@ const Signup = () => {
                     </ProviderAuth>
                     <SVGIcon iconName='linkedin' size={32} />
                 </ProvidersContainer>
-
-                {displayFormStatus && (
-                    <div className='formStatus'>
-                        {formStatus.type === 'error' ? (
-                            <p>{formStatus.message}</p>
-                        ) : formStatus.type === 'success' ? (
-                            <p>{formStatus.message}</p>
-                        ) : null}
-                    </div>
-                )}
             </AuthForm>
         </Formik>
     )
