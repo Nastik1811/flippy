@@ -4,6 +4,7 @@ import {useFirebase} from '../../context/FirebaseContext'
 import {ICollection} from '../../../types'
 import CollectionCreate from './CreateCollection'
 import {Preview, ItemsGrid, NewItemLink} from './styled'
+import Loader from '../Loader'
 
 const CollectionPanel = () => {
     const {manager} = useFirebase()
@@ -13,6 +14,10 @@ const CollectionPanel = () => {
         manager!.getCollections().then(data => setCollections(data))
     }, [manager])
 
+    if (!collections) {
+        return <Loader />
+    }
+
     return (
         <>
             <ItemsGrid>
@@ -20,7 +25,7 @@ const CollectionPanel = () => {
                     <NewItemLink to='/manage/collections/new'>+</NewItemLink>
                 </Preview>
                 {collections
-                    ? collections?.map(c => (
+                    ? collections.map(c => (
                           <Preview key={c.id}>{c.name}</Preview>
                       ))
                     : null}

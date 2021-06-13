@@ -33,7 +33,7 @@ interface CollectionLink {
 }
 
 const HomePage = () => {
-    const {manager} = useFirebase()
+    const {manager, user} = useFirebase()
     const [collections, setCollections] = useState<ICollection[]>([])
     const [cards, setCards] = useState<ICard[]>([])
     const [isLoading, setIsLoading] = useState(true)
@@ -59,9 +59,9 @@ const HomePage = () => {
     return (
         <Layout>
             <GreetingContainer>
-                <Typography size='xl'>Hello, Anastasia</Typography>
+                <Typography size='xl'>Hello, {user.displayName}</Typography>
                 <Typography size='m'>{message}</Typography>
-                <Button to='/'>
+                <Button to='/review'>
                     <Typography size='m'>Review all cards</Typography>
                 </Button>
                 <AddButton to='/card'>

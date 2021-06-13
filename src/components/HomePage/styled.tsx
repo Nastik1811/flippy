@@ -25,6 +25,9 @@ export const Layout = styled.div`
 `
 
 export const AddButton = styled(Button)`
+    .icon-stroke {
+        stroke: black;
+    }
     @media only screen and (max-width: ${breakpoints.DESKTOP}) {
         position: fixed;
         bottom: 70px;
@@ -42,7 +45,7 @@ export const GreetingContainer = styled.div`
     width: 100%;
     display: grid;
     place-items: center;
-    row-gap: 12px;
+    row-gap: 16px;
     margin: auto;
     padding: 1.5rem;
     //font-size: 1.5rem;
@@ -59,6 +62,7 @@ export const CollectionBoard = styled.div`
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
     gap: 20px;
+    margin-bottom: 80px;
 `
 
 export const Title = styled.h2`

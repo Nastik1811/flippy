@@ -1,4 +1,10 @@
 import styled, {keyframes} from 'styled-components'
+import theme from 'styled-theming'
+
+const mainColor = theme('theme', {
+    light: 'rgb(111, 198, 238)',
+    dark: '#a07dff',
+})
 
 export const Container = styled.div`
     width: 100%;
@@ -19,11 +25,9 @@ export const AnimationContainer = styled.div`
 export const stretch = keyframes`
     0% {
         transform: scale(1);
-        background-color: $color-primary;
     }
     100% {
         opacity: 100%;
-        background-color: $dark-blue-text;
         transform: scale(.5) ;
     }
 `
@@ -35,6 +39,7 @@ export const Component = styled.span`
     margin-left: 5px;
     border-radius: 50%;
     opacity: 70%;
+    background-color: ${mainColor};
     animation-name: ${stretch};
     animation-duration: 1.2s;
     animation-timing-function: linear;

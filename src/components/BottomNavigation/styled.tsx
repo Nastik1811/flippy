@@ -42,5 +42,11 @@ export const NavItem = styled(NavLink).attrs({activeClassName})`
     }
 
     &.${activeClassName} {
+        transform: scale(1.2);
+        .icon-stroke {
+            fill: none;
+            stroke-width: 2.2px;
+            stroke: white;
+        }
     }
 `

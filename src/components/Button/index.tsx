@@ -40,7 +40,7 @@ const Button = styled(Link)`
         width: 100%;
         height: 100%;
         border-radius: inherit;
-        border: 1px solid #fcc02a;
+        border: 1px solid #daa829;
         left: 3px;
         bottom: 3px;
         transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);

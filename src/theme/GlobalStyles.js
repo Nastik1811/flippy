@@ -3,7 +3,8 @@ import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
 import RalewayRegular from '../assets/fonts/Raleway-Regular.ttf';
 
 export const GlobalStyle = createGlobalStyle`
-    @import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+  @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
   html {
     box-sizing: border-box;

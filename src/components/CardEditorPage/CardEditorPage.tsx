@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {Redirect} from 'react-router'
+import {Redirect, useHistory} from 'react-router'
 import {useFirebase} from '../../context/FirebaseContext'
 import {ICardDetails, ICollection} from '../../../types'
 import CardForm from '../CardForm'
@@ -11,6 +11,7 @@ import {
     PageHeader,
     PageHeaderLine,
 } from './styled'
+import {IconButton} from '../common'
 
 const emptyDetails: ICardDetails = {
     front: '',
@@ -23,6 +24,7 @@ const CardEditorPage = () => {
     const [initialDetails, setInitialDetails] = useState(emptyDetails)
     const [collections, setCollections] = useState<ICollection[]>([])
     const [completed, setCompleted] = useState(false)
+    const history = useHistory()
 
     useEffect(() => {
         manager!.getCollections().then(data => setCollections(data))
@@ -45,7 +47,9 @@ const CardEditorPage = () => {
         <CardEditor>
             <PageHeader>
                 <HeaderNav>
-                    <SVGIcon iconName='back' />
+                    <IconButton onClick={history.goBack}>
+                        <SVGIcon iconName='back' />
+                    </IconButton>
                 </HeaderNav>
                 <HeaderTitle>Card editor</HeaderTitle>
                 <PageHeaderLine />

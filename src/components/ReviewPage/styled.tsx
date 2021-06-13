@@ -68,8 +68,11 @@ export const Layout = styled.div`
 
 export const MarkPanel = styled.div`
     width: 100%;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+    column-gap: 12px;
+    margin: auto;
     margin-top: 10px;
 `
 export const ReviewContainer = styled.div`

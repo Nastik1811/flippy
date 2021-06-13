@@ -17,9 +17,22 @@ export type MarkName = keyof typeof marks
 
 const Wrapper = styled.button`
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 60px;
+    height: 60px;
     color: white;
+    background-color: transparent;
+    border: none;
+
+    .mark-stroke {
+        fill: none;
+        stroke: currentColor;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+    }
+
+    .mark-details {
+        fill: currentColor;
+    }
 `
 
 const Mark: React.FC<{name: MarkName; onClick: () => void}> = ({
@@ -30,7 +43,7 @@ const Mark: React.FC<{name: MarkName; onClick: () => void}> = ({
 
     return (
         <Wrapper onClick={onClick}>
-            <Mark fill='white' />
+            <Mark />
         </Wrapper>
     )
 }

@@ -14,7 +14,7 @@ import theme from 'styled-theming'
 
 export const currentColor = theme('theme', {
     light: '#296c8b',
-    dark: '#ded4fc',
+    dark: '#d2c3ff',
 })
 
 const icons = {
@@ -41,7 +41,7 @@ const IconWrapper = styled.i<{size?: number}>`
     display: block;
     width: ${props => (props.size ? `${props.size}px` : '24px')};
     height: ${props => (props.size ? `${props.size}px` : '24px')};
-    color: white;
+    color: inherit;
 
     .icon-stroke {
         fill: none;

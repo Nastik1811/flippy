@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import {useFirebase} from '../../context/FirebaseContext'
 import {ICard} from '../../../types'
 import {Preview, ItemsGrid, NewItemLink} from './styled'
+import Loader from '../Loader'
 
 const CardsPanel = () => {
     const {manager} = useFirebase()
@@ -10,6 +11,10 @@ const CardsPanel = () => {
     useEffect(() => {
         manager!.getCards().then(data => setCards(data))
     }, [manager])
+
+    if (!cards) {
+        return <Loader />
+    }
 
     return (
         <ItemsGrid>
