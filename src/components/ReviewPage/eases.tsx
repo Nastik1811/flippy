@@ -16,8 +16,9 @@ const marks = {
 export type MarkName = keyof typeof marks
 
 const Wrapper = styled.button`
+    cursor: pointer;
     display: block;
-    width: 60px;
+    width: 80px;
     height: 60px;
     color: white;
     background-color: transparent;

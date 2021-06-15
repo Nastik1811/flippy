@@ -5,9 +5,19 @@ import {ICard, Ease} from '../../../types'
 import Loader from '../Loader'
 import Typography from '../Typography'
 import Mark from './eases'
-import {MarkPanel, ReviewContainer, Layout, SessionInfo} from './styled'
+import {MarkPanel, ReviewContainer, Layout, SessionInfo, CongratsImage} from './styled'
 import Timer from './Timer'
 import Card from './Card'
+import {
+    Window,
+    Popup,
+    PopupActions,
+    PopupHeader,
+    PopupContent,
+    PopupContainer,
+    PopupTitle,
+    Hr,
+} from '../Popup/styled'
 
 const ReviewPage = () => {
     const {manager} = useFirebase()
@@ -46,13 +56,11 @@ const ReviewPage = () => {
 
     const handleMarkClick = (card: ICard, ease: Ease) => {
         manager.createReview(card, ease)
+        setLeft(left - 1)
         if (left !== 0) {
             animateCardFlip()
-            setLeft(left - 1)
-            setCardIndex(currentCardIndex + 1)
         } else {
             setShowCongrats(true)
-            setIsOver(true)
         }
     }
 
@@ -62,6 +70,7 @@ const ReviewPage = () => {
         setTimeout(() => {
             setFlipped(false)
             setIsNew(false)
+            setCardIndex(currentCardIndex + 1)
         }, 600)
     }
 
@@ -71,6 +80,27 @@ const ReviewPage = () => {
 
     if (!cards) {
         return <Loader />
+    }
+
+    if(showCongrats) {
+        return (
+            <Window>
+                <Popup>
+                    <PopupHeader>
+                        <PopupTitle>That's all. Good job!</PopupTitle>
+                        <Hr />
+                    </PopupHeader>
+                    <PopupContent>
+                        <PopupContainer>
+                            <CongratsImage/>
+                        </PopupContainer>
+                    </PopupContent>
+                    <PopupActions>
+                        <button onClick={() => setIsOver(true)}>Got it!</button>
+                    </PopupActions>
+                </Popup>
+            </Window>
+        )
     }
 
     return (
@@ -92,8 +122,7 @@ const ReviewPage = () => {
                     isNew={isNew}
                 />
 
-                {isVisible && (
-                    <MarkPanel>
+                    <MarkPanel isVisible={isVisible}>
                         <Mark
                             name='hard'
                             onClick={() =>
@@ -113,9 +142,7 @@ const ReviewPage = () => {
                             }
                         />
                     </MarkPanel>
-                )}
             </ReviewContainer>
-            {showCongrats && <div>showCongrats</div>}
         </Layout>
     )
 }
