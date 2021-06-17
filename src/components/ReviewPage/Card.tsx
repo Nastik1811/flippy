@@ -12,10 +12,10 @@ const Card = ({card, isFlipped, onClick, isNew}: CardPropsType) => {
     return (
         <StyledCard isFlipped={isFlipped} isNew={isNew} onClick={onClick}>
             <SideView side='front'>
-                <CardContent>{card.front}</CardContent>
+                <CardContent isVisible={!isFlipped}>{card.front}</CardContent>
             </SideView>
             <SideView side='back'>
-                <CardContent>{card.back}</CardContent>
+                <CardContent isVisible={isFlipped}>{card.back}</CardContent>
             </SideView>
             <TurnCardCaption>Click to flip</TurnCardCaption>
         </StyledCard>

@@ -54,7 +54,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root{
-   min-height: 100%;
+    min-height: 100%;
     display: flex;
   }
 

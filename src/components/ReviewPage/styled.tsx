@@ -35,13 +35,14 @@ export const SideView = styled.div<{side: CardSide}>`
     padding: 10px;
     margin-bottom: 20px;
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     overflow: hidden;
     background-color: ${props =>
         props.side === 'front' ? 'rgb(176, 229, 248)' : 'rgb(255, 221, 133)'};
     transform: ${props => (props.side === 'back' ? 'rotateY(180deg)' : 'none')};
 `
 
-export const CardContent = styled.p`
+export const CardContent = styled.p<{isVisible: boolean}>`
     width: 100%;
     height: 100%;
     font-size: 2rem;
@@ -56,6 +57,8 @@ export const CardContent = styled.p`
     border-radius: inherit;
     font-family: $font-basic;
     font-weight: 300;
+    opacity: ${props => (props.isVisible ? 1 : 0)};
+    transition: all 0.5s 0.3s ease;
 `
 
 export const TurnCardCaption = styled.span`
