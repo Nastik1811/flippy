@@ -26,6 +26,7 @@ export interface ICollection extends ICollectionDetails{
     id: string
     lastEdit?: Date
     created: Date
+    cardsNumber?: number
 }
 
 export interface IReviewDetails{

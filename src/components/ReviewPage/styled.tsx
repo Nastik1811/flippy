@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import {CardSide} from '../../../types'
 import path from '../../assets/images/success.png'
+import {breakpoints} from '../../theme'
 
 export const StyledCard = styled.div<{isFlipped: boolean; isNew: boolean}>`
     position: relative;
@@ -14,7 +15,12 @@ export const StyledCard = styled.div<{isFlipped: boolean; isNew: boolean}>`
     border-radius: 8px;
     //box-shadow: 0px 0px 30px rgba(51, 95, 121, 0.2);
     transform-style: preserve-3d;
-    transform: ${props => props.isNew ? 'translateY(-800px) rotate(-45deg)' : (props.isFlipped ? 'rotateY(180deg)' : 'none')};
+    transform: ${props =>
+        props.isNew
+            ? 'translateY(-800px) rotate(-45deg)'
+            : props.isFlipped
+            ? 'rotateY(180deg)'
+            : 'none'};
     transition: all 1s cubic-bezier(0.445, -0.15, 0.55, 1.35);
 `
 
@@ -68,7 +74,7 @@ export const Layout = styled.div`
 `
 
 export const MarkPanel = styled.div<{isVisible: boolean}>`
-    visability: ${props => props.isVisible ? 'visible' : 'hidden'};
+    visibility: ${props => (props.isVisible ? 'visible' : 'hidden')};
     width: 100%;
     display: grid;
     grid-auto-flow: column;
@@ -103,9 +109,14 @@ export const CardsLeft = styled.span``
 
 export const CongratsImage = styled.div`
     margin: auto;
-    height: 280px;
-    width: 290px;
+    height: 180px;
+    width: 200px;
     background-image: url(${path});
     background-repeat: no-repeat;
     background-size: cover;
+
+    @media (min-width: ${breakpoints.TABLET}) {
+        height: 280px;
+        width: 290px;
+    }
 `

@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import theme from 'styled-theming'
+import {breakpoints} from '../../theme'
 
 export const primaryColor = theme('theme', {
     light: 'rgb(240, 251, 255)',
@@ -23,9 +24,8 @@ export const Popup = styled.div`
     margin-top: 10%;
     display: flex;
     flex-direction: column;
-    font-family: $font-main;
-    color: $color-contrast-text;
-    width: 580px;
+    width: 90%;
+    max-width: 580px;
     height: auto;
     min-height: 270px;
     border-radius: 10px;
@@ -71,7 +71,17 @@ export const PopupContainer = styled.div`
 export const PopupActions = styled.section`
     margin-top: 5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+
+    @media (min-width: ${breakpoints.TABLET}) {
+        justify-content: flex-end;
+    }
+`
+
+export const PopupButton = styled.button`
+    border: none;
+    background: transparent;
+    font-size: 1.3rem;
 `
 
 export const PopupInput = styled.input`

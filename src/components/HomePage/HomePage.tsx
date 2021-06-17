@@ -21,9 +21,12 @@ import styled from 'styled-components'
 const Image = styled.div`
     position: relative;
     top: -50px;
-    height: 600px;
+    height: 500px;
     text-align: center;
-    background: url(${path}) no-repeat center;
+    background-image: url(${path});
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 `
 
 // interface ICollectionLink {
@@ -40,7 +43,9 @@ const HomePage = () => {
 
     useEffect(() => {
         let cardsLoad = manager.getCardsToReview().then(setCards)
-        let collectionsLoad = manager.getCollections().then(setCollections)
+        let collectionsLoad = manager
+            .getCollectionToRepeatPreviews()
+            .then(setCollections)
         Promise.all([cardsLoad, collectionsLoad]).then(() =>
             setIsLoading(false)
         )
@@ -74,22 +79,29 @@ const HomePage = () => {
                     <Typography onlyDesktop>Add Card</Typography>
                 </AddButton>
             </GreetingContainer>
-            <Typography size='xl'>Collection to Review</Typography>
             {collections.length > 0 ? (
-                <CollectionBoard>
-                    {collections?.map(c => (
-                        <CollectionPreview key={c.id}>
-                            <PreviewContent>
-                                <PreviewName>{c.name}</PreviewName>
-                                <PreviewDetails>
-                                    2 cards to review
-                                </PreviewDetails>
-                            </PreviewContent>
-                        </CollectionPreview>
-                    ))}
-                </CollectionBoard>
+                <>
+                    <Typography size='xl'>Collection to Review</Typography>
+                    <CollectionBoard>
+                        {collections?.map(c => (
+                            <CollectionPreview key={c.id}>
+                                <PreviewContent>
+                                    <PreviewName>{c.name}</PreviewName>
+                                    <PreviewDetails>
+                                        {c.cardsNumber} cards to review
+                                    </PreviewDetails>
+                                </PreviewContent>
+                            </CollectionPreview>
+                        ))}
+                    </CollectionBoard>
+                </>
             ) : (
-                <Image />
+                <>
+                    <Typography size='xl' align='center'>
+                        No collections yet
+                    </Typography>
+                    <Image />
+                </>
             )}
         </Layout>
     )

@@ -1,4 +1,5 @@
 import {FormEvent, useState} from 'react'
+import {useHistory} from 'react-router'
 import {useFirebase} from '../../context/FirebaseContext'
 import {
     Window,
@@ -10,12 +11,14 @@ import {
     PopupContainer,
     PopupTitle,
     Hr,
+    PopupButton,
 } from '../Popup/styled'
 import Typography from '../Typography'
 
 const CollectionCreate = () => {
     const {manager} = useFirebase()
     const [name, setName] = useState('')
+    const history = useHistory()
 
     const handleSubmit = async (event: FormEvent) => {
         try {
@@ -24,6 +27,7 @@ const CollectionCreate = () => {
             alert(e)
         } finally {
             setName('')
+            history.push('/manage/collections')
         }
     }
 
@@ -48,8 +52,8 @@ const CollectionCreate = () => {
                     </PopupContainer>
                 </PopupContent>
                 <PopupActions>
-                    <button onClick={handleSubmit}>Create</button>
-                    <button>Back</button>
+                    <PopupButton onClick={handleSubmit}>Create</PopupButton>
+                    <PopupButton onClick={history.goBack}>Back</PopupButton>
                 </PopupActions>
             </Popup>
         </Window>

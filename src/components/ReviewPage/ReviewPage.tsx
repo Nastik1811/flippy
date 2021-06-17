@@ -5,16 +5,22 @@ import {ICard, Ease} from '../../../types'
 import Loader from '../Loader'
 import Typography from '../Typography'
 import Mark from './eases'
-import {MarkPanel, ReviewContainer, Layout, SessionInfo, CongratsImage} from './styled'
+import {
+    MarkPanel,
+    ReviewContainer,
+    Layout,
+    SessionInfo,
+    CongratsImage,
+} from './styled'
 import Timer from './Timer'
 import Card from './Card'
 import {
     Window,
     Popup,
     PopupActions,
+    PopupButton,
     PopupHeader,
     PopupContent,
-    PopupContainer,
     PopupTitle,
     Hr,
 } from '../Popup/styled'
@@ -82,7 +88,7 @@ const ReviewPage = () => {
         return <Loader />
     }
 
-    if(showCongrats) {
+    if (showCongrats) {
         return (
             <Window>
                 <Popup>
@@ -91,12 +97,12 @@ const ReviewPage = () => {
                         <Hr />
                     </PopupHeader>
                     <PopupContent>
-                        <PopupContainer>
-                            <CongratsImage/>
-                        </PopupContainer>
+                        <CongratsImage />
                     </PopupContent>
                     <PopupActions>
-                        <button onClick={() => setIsOver(true)}>Got it!</button>
+                        <PopupButton onClick={() => setIsOver(true)}>
+                            Got it!
+                        </PopupButton>
                     </PopupActions>
                 </Popup>
             </Window>
@@ -122,26 +128,26 @@ const ReviewPage = () => {
                     isNew={isNew}
                 />
 
-                    <MarkPanel isVisible={isVisible}>
-                        <Mark
-                            name='hard'
-                            onClick={() =>
-                                handleMarkClick(cards[currentCardIndex], 'hard')
-                            }
-                        />
-                        <Mark
-                            name='norm'
-                            onClick={() =>
-                                handleMarkClick(cards[currentCardIndex], 'norm')
-                            }
-                        />
-                        <Mark
-                            name='easy'
-                            onClick={() =>
-                                handleMarkClick(cards[currentCardIndex], 'easy')
-                            }
-                        />
-                    </MarkPanel>
+                <MarkPanel isVisible={isVisible}>
+                    <Mark
+                        name='hard'
+                        onClick={() =>
+                            handleMarkClick(cards[currentCardIndex], 'hard')
+                        }
+                    />
+                    <Mark
+                        name='norm'
+                        onClick={() =>
+                            handleMarkClick(cards[currentCardIndex], 'norm')
+                        }
+                    />
+                    <Mark
+                        name='easy'
+                        onClick={() =>
+                            handleMarkClick(cards[currentCardIndex], 'easy')
+                        }
+                    />
+                </MarkPanel>
             </ReviewContainer>
         </Layout>
     )

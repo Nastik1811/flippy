@@ -11,7 +11,7 @@ const CollectionPanel = () => {
     const [collections, setCollections] = useState<ICollection[] | null>(null)
 
     useEffect(() => {
-        manager!.getCollections().then(data => setCollections(data))
+        return manager.listenCollections(setCollections)
     }, [manager])
 
     if (!collections) {

@@ -118,6 +118,16 @@ export class DataManger {
     
     }
 
+    listenCollections(listener: (collections: ICollection[]) => void, order:firebase.firestore.OrderByDirection='asc'){
+        return this.collectionsRef.orderBy("lastEdit", order).onSnapshot(
+            snapshot => {
+                const collections: ICollection[] = []
+                snapshot.forEach(doc => collections.push(this.mapDataToCollection(doc)))
+                listener(collections)
+            }
+        )
+    }
+
     async getCardDetails(id: string){
         const doc = await this.cardsRef.doc(id).get()
         return this.mapDataToCard(doc)
@@ -135,8 +145,8 @@ export class DataManger {
 
     async createReview(card: ICard, ease: Ease){
         const today = new Date()
-        const previousInterval = card.lastReview ? card.scheduledReview!.getDate() - card.lastReview.getDate() : 0
-        const delay = today.getDate() - card.scheduledReview!.getDate()
+        const previousInterval = card.lastReview ? card.scheduledReview.getMilliseconds() - card.lastReview.getMilliseconds() : 0
+        const delay = today.getMilliseconds() - card.scheduledReview.getMilliseconds()
         const reviewsNumber = card.reviewsNumber + 1
         const review: IReviewDetails = {
             cardId: card.id,
@@ -152,6 +162,61 @@ export class DataManger {
 
     async getTotalRepeatNumber(){
         return this.cardsRef.where("scheduledReview", "<=", new Date()).get().then(query => query.docs.length);
+    }
+
+    async getCollectionsToReview(){
+        return this.cardsRef.where("scheduledReview", "<=", new Date()).get().then(query => query.docs.length);
+    }
+
+
+    reselectCards(cards: ICard[]) {
+        const grouppedCards: {[key: string]: ICard[]} = {};
+        cards.forEach(card => {
+            grouppedCards[card.collectionId] ? grouppedCards[card.collectionId].push(card) : grouppedCards[card.collectionId] = [card]
+        })
+        return grouppedCards;
+    }
+
+    async getCollectionToRepeatPreviews(){
+        const cards = await this.getCardsToReview()
+        const collections = await this.getCollections()
+        
+        const groupedCards = this.reselectCards(cards)
+        const collectionsWithCard: ICollection[] = []
+
+        collections.forEach(collection => {
+            if(groupedCards[collection.id]){
+                collectionsWithCard.push({...collection, cardsNumber: groupedCards[collection.id].length})
+            }
+        }, [])
+
+        return collectionsWithCard
+    }
+    
+    async deleteCollection(id: string, withCards = false){
+        let batch = this.firestore.batch();
+        batch.delete(this.collectionsRef.doc(id))
+        if(withCards){
+            this.cardsRef.where("collection.id", "==", id).get()
+            .then(query => query.forEach(doc => batch.delete(this.cardsRef.doc(doc.id))))
+            .then(() => batch.commit())
+        }
+        else{
+            this.cardsRef.where("collection.id", "==", id).get()
+            .then(query => query.forEach(doc => batch.update(
+                this.cardsRef.doc(doc.id),
+                {
+                    collection: {
+                    id: null,
+                    name: ""
+                }}
+                )))
+            .then(() => batch.commit())
+        }
+    }
+
+    async deleteCard(id: string){
+        this.cardsRef.doc(id).delete()
     }
 
   }
