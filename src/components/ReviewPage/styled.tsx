@@ -58,16 +58,18 @@ export const CardContent = styled.p<{isVisible: boolean}>`
     font-family: $font-basic;
     font-weight: 300;
     opacity: ${props => (props.isVisible ? 1 : 0)};
-    transition: all 0.5s 0.3s ease;
+    transition: all 0.3s 0.3s ease;
 `
 
-export const TurnCardCaption = styled.span`
+export const TurnCardCaption = styled.span<{isVisible: boolean}>`
     color: #fff;
     font-size: 1rem;
     position: absolute;
     bottom: 20px;
     text-align: center;
     width: 100%;
+    opacity: ${props => (props.isVisible ? 1 : 0)};
+    transition: all 0.3s 0.3s ease;
 `
 
 export const Layout = styled.div`
@@ -87,7 +89,7 @@ export const MarkPanel = styled.div<{isVisible: boolean}>`
     margin-top: 10px;
 `
 export const ReviewContainer = styled.div`
-    padding: 20px 10px;
+    padding: 20px 0;
     width: 100%;
     max-width: 600px;
     display: flex;

@@ -17,7 +17,9 @@ const Card = ({card, isFlipped, onClick, isNew}: CardPropsType) => {
             <SideView side='back'>
                 <CardContent isVisible={isFlipped}>{card.back}</CardContent>
             </SideView>
-            <TurnCardCaption>Click to flip</TurnCardCaption>
+            <TurnCardCaption isVisible={!isFlipped}>
+                Click to flip
+            </TurnCardCaption>
         </StyledCard>
     )
 }

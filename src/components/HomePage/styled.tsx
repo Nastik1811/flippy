@@ -45,9 +45,8 @@ export const GreetingContainer = styled.div`
     width: 100%;
     display: grid;
     place-items: center;
-    row-gap: 16px;
+    row-gap: 20px;
     margin: auto;
-    padding: 1.5rem;
     //font-size: 1.5rem;
     //text-align: center;
 
@@ -55,6 +54,7 @@ export const GreetingContainer = styled.div`
         max-width: 650px;
         border: 1px solid rgba(150, 180, 200, 1);
         border-radius: 15px;
+        padding: 1.5rem;
     }
 `
 
@@ -73,7 +73,7 @@ export const CollectionPreview = styled.div`
     position: relative;
     //width: 100%;
     cursor: pointer;
-    height: 170px;
+    height: 180px;
     border-radius: 8px;
     background-color: ${previewColor};
     display: grid;

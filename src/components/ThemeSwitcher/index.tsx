@@ -46,12 +46,17 @@ export const ThemeSwitcher = ({onClick}: {onClick: () => void}) => {
 }
 
 const Wrapper = styled.div`
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: -24px;
+    right: -24px;
     cursor: pointer;
+
+    &:hover,
+    &:focus {
+        outline: none;
+    }
 
     @media only screen and (min-width: ${breakpoints.DESKTOP}) {
         width: 180px;
