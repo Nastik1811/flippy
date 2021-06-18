@@ -9,6 +9,7 @@ const AppNavigation = () => {
             <NavBar>
                 <NavItem to='/home'>Home</NavItem>
                 <NavItem to='/manage'>Manage</NavItem>
+                <NavItem to='/user'>User</NavItem>
                 <SignOut to='/signout' onClick={app.signOut}>
                     Sign out
                 </SignOut>

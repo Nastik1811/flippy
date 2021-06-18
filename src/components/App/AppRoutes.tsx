@@ -12,6 +12,7 @@ import ReviewPage from '../ReviewPage'
 import {ThemeSwitcher} from '../ThemeSwitcher'
 import {useFirebase} from '../../context/FirebaseContext'
 import {Cloud} from '../../theme/Cloud'
+import UserInfoPage from '../UserInfoPage'
 
 type AppRoutesPropsType = {
     switchTheme: () => void
@@ -45,6 +46,7 @@ const AppRoutes = ({switchTheme}: AppRoutesPropsType) => {
                 <Route path='/manage' component={ManagePage} />
                 <Route path='/card' component={CardEditorPage} />
                 <Route path='/review' component={ReviewPage} />
+                <Route path='/user' component={UserInfoPage} />
                 <Redirect path='/auth' to='/home' />
                 <Redirect path='/' to='/home' />
                 <Route component={NotFoundPage} />

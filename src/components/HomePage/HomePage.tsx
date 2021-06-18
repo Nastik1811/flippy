@@ -17,6 +17,7 @@ import {
     PreviewDetails,
 } from './styled'
 import styled from 'styled-components'
+import {useLanguage} from '../../hooks/useLanguage'
 
 const Image = styled.div`
     position: relative;
@@ -40,6 +41,7 @@ const HomePage = () => {
     const [collections, setCollections] = useState<ICollection[]>([])
     const [cards, setCards] = useState<ICard[]>([])
     const [isLoading, setIsLoading] = useState(true)
+    const {strings} = useLanguage()
 
     useEffect(() => {
         let cardsLoad = manager.getCardsToReview().then(setCards)
@@ -65,7 +67,9 @@ const HomePage = () => {
     return (
         <Layout>
             <GreetingContainer>
-                <Typography size='xl'>Hello, {user.displayName}</Typography>
+                <Typography size='xl'>
+                    {strings.hello}, {user.displayName}
+                </Typography>
                 <Typography size='m'>{message}</Typography>
                 {cards.length > 0 && (
                     <Button to='/review'>

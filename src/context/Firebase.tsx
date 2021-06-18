@@ -85,4 +85,10 @@ export class Firebase {
                         })
             })
     }
+
+    setName = (name: string) => {
+        this.app.auth().currentUser?.updateProfile({
+            displayName: name,
+        })
+    }
 }

@@ -145,8 +145,8 @@ export class DataManger {
 
     async createReview(card: ICard, ease: Ease){
         const today = new Date()
-        const previousInterval = card.lastReview ? card.scheduledReview.getMilliseconds() - card.lastReview.getMilliseconds() : 0
-        const delay = today.getMilliseconds() - card.scheduledReview.getMilliseconds()
+        const previousInterval = card.lastReview ? card.scheduledReview.getTime() - card.lastReview.getTime() : 0
+        const delay = today.getTime() - card.scheduledReview.getTime()
         const reviewsNumber = card.reviewsNumber + 1
         const review: IReviewDetails = {
             cardId: card.id,
