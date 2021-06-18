@@ -1,14 +1,13 @@
 import {useEffect, useState} from 'react'
 import {useFirebase} from '../../context/FirebaseContext'
-import {Input, Form, Select, SaveButton, Container} from './styled'
+import {Input, Form, Select, SaveButton, Container, SignOut} from './styled'
 import Typography from '../Typography'
-import {useLanguage, Language} from '../../hooks/useLanguage'
-import Loader from '../Loader'
+import {Language, useLanguage} from '../../context/LanguageContext'
 
 const UserInfoPage = () => {
     const {app, user} = useFirebase()
     const [userName, setUserName] = useState<string>(user.displayName || '')
-    const {language, switchLanguage, langLoaded} = useLanguage()
+    const {language, strings, switchLanguage} = useLanguage()
     const [lang, setLang] = useState<Language>(language)
 
     useEffect(() => {
@@ -20,20 +19,16 @@ const UserInfoPage = () => {
         switchLanguage(lang)
     }
 
-    if (!langLoaded) {
-        return <Loader />
-    }
-
     return (
         <Container>
-            <Typography size='l'>User Settings</Typography>
+            <Typography size='l'>{strings.settings}</Typography>
             <Form>
-                <Typography size='m'>User name</Typography>
+                <Typography size='m'>{strings.userName}</Typography>
                 <Input
                     value={userName}
                     onChange={e => setUserName(e.target.value)}
                 />
-                <Typography size='m'>Choose a language</Typography>
+                <Typography size='m'>{strings.language}</Typography>
                 <Select
                     value={lang}
                     onChange={e => setLang(e.target.value as Language)}>
@@ -42,8 +37,14 @@ const UserInfoPage = () => {
                 </Select>
             </Form>
             <SaveButton as='button' onClick={onSubmit}>
-                <Typography>Save</Typography>
+                <Typography>{strings.save}</Typography>
             </SaveButton>
+            <Typography size='xs' onlyMobile>
+                {strings.or}
+            </Typography>
+            <Typography onlyMobile>
+                <SignOut onClick={app.signOut}>{strings.signOut}</SignOut>
+            </Typography>
         </Container>
     )
 }

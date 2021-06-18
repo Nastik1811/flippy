@@ -1,6 +1,7 @@
 import {FormEvent, useState} from 'react'
 import {useHistory} from 'react-router'
 import {useFirebase} from '../../context/FirebaseContext'
+import {useLanguage} from '../../context/LanguageContext'
 import {
     Window,
     Popup,
@@ -19,6 +20,7 @@ const CollectionCreate = () => {
     const {manager} = useFirebase()
     const [name, setName] = useState('')
     const history = useHistory()
+    const {strings} = useLanguage()
 
     const handleSubmit = async (event: FormEvent) => {
         try {
@@ -35,25 +37,29 @@ const CollectionCreate = () => {
         <Window>
             <Popup>
                 <PopupHeader>
-                    <PopupTitle>Create collection</PopupTitle>
+                    <PopupTitle>{strings.createCollection}</PopupTitle>
                     <Hr />
                 </PopupHeader>
                 <PopupContent>
                     <PopupContainer>
                         <Typography size='m'>
-                            Please, give a name for a new collection.
+                            {strings.giveNameForCollection}
                         </Typography>
                         <PopupInput
                             type='text'
-                            placeholder='Collection name'
+                            placeholder={strings.collectionName}
                             value={name}
                             onChange={e => setName(e.target.value)}
                         />
                     </PopupContainer>
                 </PopupContent>
                 <PopupActions>
-                    <PopupButton onClick={handleSubmit}>Create</PopupButton>
-                    <PopupButton onClick={history.goBack}>Back</PopupButton>
+                    <PopupButton onClick={handleSubmit}>
+                        {strings.create}
+                    </PopupButton>
+                    <PopupButton onClick={history.goBack}>
+                        {strings.back}
+                    </PopupButton>
                 </PopupActions>
             </Popup>
         </Window>

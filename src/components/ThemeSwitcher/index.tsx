@@ -49,8 +49,8 @@ const Wrapper = styled.div`
     width: 80px;
     height: 80px;
     position: absolute;
-    top: -24px;
-    right: -24px;
+    top: -20px;
+    left: -20px;
     cursor: pointer;
 
     &:hover,

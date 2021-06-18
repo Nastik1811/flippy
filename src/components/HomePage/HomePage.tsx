@@ -17,7 +17,7 @@ import {
     PreviewDetails,
 } from './styled'
 import styled from 'styled-components'
-import {useLanguage} from '../../hooks/useLanguage'
+import {useLanguage} from '../../context/LanguageContext'
 
 const Image = styled.div`
     position: relative;
@@ -57,8 +57,8 @@ const HomePage = () => {
     const message = isUserNew
         ? `You seem to be new here. Let's add your first card! There is a lot of work ahead :)`
         : cards.length > 0
-        ? `   You have something to repeat. ${cards.length} cards are awaiting you... Let’s start learning!`
-        : `There are no cards ready to repeat. But you can add new one any time! `
+        ? `${strings.greeting} ${cards.length} ${strings.cardsWait}`
+        : `${strings.noCardsMessage}`
 
     if (isLoading) {
         return <Loader />
@@ -73,26 +73,28 @@ const HomePage = () => {
                 <Typography size='m'>{message}</Typography>
                 {cards.length > 0 && (
                     <Button to='/review'>
-                        <Typography size='m'>Review all cards</Typography>
+                        <Typography size='m'>{strings.reviewCards}</Typography>
                     </Button>
                 )}
                 <AddButton to='/card'>
                     <Typography onlyMobile>
                         <SVGIcon iconName='pen' />
                     </Typography>
-                    <Typography onlyDesktop>Add Card</Typography>
+                    <Typography onlyDesktop>{strings.addCard}</Typography>
                 </AddButton>
             </GreetingContainer>
             {collections.length > 0 ? (
                 <>
-                    <Typography size='xl'>Collection to Review</Typography>
+                    <Typography size='xl'>
+                        {strings.collectionToReview}
+                    </Typography>
                     <CollectionBoard>
                         {collections?.map(c => (
                             <CollectionPreview key={c.id}>
                                 <PreviewContent>
                                     <PreviewName>{c.name}</PreviewName>
                                     <PreviewDetails>
-                                        {c.cardsNumber} cards to review
+                                        {c.cardsNumber} {strings.cardsToReview}
                                     </PreviewDetails>
                                 </PreviewContent>
                             </CollectionPreview>
@@ -102,7 +104,7 @@ const HomePage = () => {
             ) : (
                 <>
                     <Typography size='xl' align='center'>
-                        No collections yet
+                        {strings.noCollections}
                     </Typography>
                     <Image />
                 </>

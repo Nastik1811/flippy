@@ -12,12 +12,14 @@ import {
     PageHeaderLine,
 } from './styled'
 import {IconButton} from '../common'
+import {useLanguage} from '../../context/LanguageContext'
 
 const CardEditorPage = () => {
     const {manager} = useFirebase()
     const [collections, setCollections] = useState<ICollection[]>([])
     const [completed, setCompleted] = useState(false)
     const history = useHistory()
+    const {strings} = useLanguage()
 
     useEffect(() => {
         manager!.getCollections().then(data => setCollections(data))
@@ -44,7 +46,7 @@ const CardEditorPage = () => {
                         <SVGIcon iconName='back' />
                     </IconButton>
                 </HeaderNav>
-                <HeaderTitle>Card editor</HeaderTitle>
+                <HeaderTitle>{strings.cardEditor}</HeaderTitle>
                 <PageHeaderLine />
             </PageHeader>
             <CardForm collections={collections} onSubmit={onSubmit} />

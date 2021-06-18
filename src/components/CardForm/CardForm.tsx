@@ -13,6 +13,7 @@ import {
     StyledForm,
     TurnCard,
 } from './styled'
+import {useLanguage} from '../../context/LanguageContext'
 
 type CardFromPropsType = {
     collections: ICollection[]
@@ -27,6 +28,7 @@ const emptyDetails: ICardDetails = {
 
 const CardForm = ({collections, onSubmit}: CardFromPropsType) => {
     const [targetSide, setTargetSide] = useState<CardSide>('front')
+    const {strings} = useLanguage()
 
     const flipSide = () => {
         setTargetSide(current => (current === 'front' ? 'back' : 'front'))
@@ -66,10 +68,10 @@ const CardForm = ({collections, onSubmit}: CardFromPropsType) => {
                 </SideView>
             </Card>
             <TurnCard type='button' onClick={flipSide}>
-                Turn side
+                {strings.turnSide}
             </TurnCard>
             <CollectionSelectWrapper>
-                <Typography>Choose a collection</Typography>
+                <Typography>{strings.chooseCollection}</Typography>
                 <CollectionSelect
                     name='collectionId'
                     value={formik.values.collectionId}
@@ -82,7 +84,7 @@ const CardForm = ({collections, onSubmit}: CardFromPropsType) => {
                 </CollectionSelect>
             </CollectionSelectWrapper>
             <SaveButton as='button' type='submit'>
-                <Typography>Save</Typography>
+                <Typography>{strings.save}</Typography>
             </SaveButton>
         </StyledForm>
     )

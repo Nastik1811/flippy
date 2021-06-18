@@ -53,8 +53,6 @@ export const Select = styled.select`
 
 export const SaveButton = styled(Button)`
     grid-area: submit;
-    width: 130px;
-    height: 50px;
     font-family: inherit;
     font-size: 1.2rem;
 `
@@ -71,5 +69,21 @@ export const Container = styled.div`
         border: 1px solid rgba(150, 180, 200, 1);
         border-radius: 15px;
         padding: 1.5rem;
+    }
+`
+export const SignOut = styled.button`
+    background: transparent;
+    border: none;
+    font-weight: 500;
+    font-size: 1.15rem;
+    z-index: 1;
+    transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+    text-shadow: 1px 1px rgba(255, 255, 255, 0);
+
+    &:hover,
+    &:focus {
+        outline: none;
+        text-shadow: 0px 0px 15px rgba(${primaryColor}, 1);
+        color: white;
     }
 `

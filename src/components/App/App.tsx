@@ -4,6 +4,7 @@ import {ThemeProvider} from 'styled-components'
 import {FirebaseProvider} from '../../context/FirebaseContext'
 import {useTheme} from '../../hooks/useTheme'
 import AppRoutes from './AppRoutes'
+import {LanguageProvider} from '../../context/LanguageContext'
 
 function App() {
     const {theme, switchTheme} = useTheme()
@@ -13,7 +14,9 @@ function App() {
             <Router>
                 <GlobalStyle theme={theme} />
                 <ThemeProvider theme={{theme}}>
-                    <AppRoutes switchTheme={switchTheme} />
+                    <LanguageProvider>
+                        <AppRoutes switchTheme={switchTheme} />
+                    </LanguageProvider>
                 </ThemeProvider>
             </Router>
         </FirebaseProvider>

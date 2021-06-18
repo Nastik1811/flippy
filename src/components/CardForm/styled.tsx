@@ -129,7 +129,7 @@ export const CollectionSelect = styled.select`
 
 export const SaveButton = styled(Button)`
     grid-area: submit;
-    width: 150px;
+    min-width: 150px;
     height: 50px;
     font-family: inherit;
     font-size: 1.3rem;
